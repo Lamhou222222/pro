@@ -1,9 +1,13 @@
 package Connectores;
 
+
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("Hola");
+
+		ConectorBD.conectar();
+		
+		System.out.println("amine");
 	}
 
 }

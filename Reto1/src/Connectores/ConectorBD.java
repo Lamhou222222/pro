@@ -5,7 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConectorBD {
-private static Connection conexion;
+	
+   public static Connection conexion;
    
     
     public static void conectar(){
@@ -20,7 +21,7 @@ private static Connection conexion;
             //El usuario es root y la contraseña es 1234
             //La conexion se hace a traves del puerto 3306
             //La BD se llama cine, es la que viene por defecto en MySQL
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/cine","root","1DAW3_BBDD");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/MR_ROBOT","root","1DAW3_BBDD");
           
             System.out.println("Conexion establecida");
           
