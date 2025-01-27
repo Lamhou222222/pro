@@ -8,11 +8,9 @@ public class ConectorBD {
 	
    public static Connection conexion;
    
-    //Metodos
     public static void conectar(){
 
         try{
-            //Cargamos el driver, el driver es la libreria que nos permite conectarnos a la BD
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Driver cargado");        
             try{
@@ -28,6 +26,7 @@ public class ConectorBD {
             System.out.println("Error en el driver");
         }
     }
+    
     public static void cerrarConexion() throws SQLException {
     	conexion.close();
     }

@@ -4,6 +4,7 @@ public class Vivienda {
 	
 	//Atributos
 	//protected int codVivienda;
+	protected int codVivienda;
 	protected String ciudad;
 	protected String direccion;
 	protected int numHab;

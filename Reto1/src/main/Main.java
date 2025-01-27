@@ -1,7 +1,8 @@
-package repositorios;
+package main;
 
 import java.util.Scanner;
 
+import repositorios.ConectorBD;
 import view.Menu;
 
 public class Main {
