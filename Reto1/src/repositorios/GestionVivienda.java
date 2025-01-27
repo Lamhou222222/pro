@@ -3,7 +3,7 @@ package repositorios;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -46,15 +46,23 @@ public class GestionVivienda {
             public static void mostrarViviendasBD() {
             	
                     String Select = "SELECT * FROM mr_robot.vivienda";
+                	try {
+        				PreparedStatement statement=conexion.prepareStatement(Select);
+        				ResultSet rs=statement.executeQuery(Select);
+        				
+        				while(rs.next()) {
+        					System.out.println("Codigo Vivienda: "+rs.getInt("CodVivienda")+
+        							", Id Oficina: "+rs.getInt("IdOficina")+", Ciudad: "+rs.getString("Ciudad)+));
+        				}
+        			} catch (SQLException e) {
+        				
+        				e.printStackTrace();
+        				System.out.println("Error al hacer la consulta: "+Select);
+        			}
+            }
                     
                  
                 
-            }
-  
- 
-   
-       
-  
 
     
 }

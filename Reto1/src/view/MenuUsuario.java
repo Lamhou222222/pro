@@ -22,12 +22,16 @@ public class MenuUsuario {
 
         switch (opcion) {
             case 1:
-            	   Usuario us=crearUsuario();
-            	   	GestionUsuario.insertarUsuario(us);
-                    break;
-
-            case 2: 	
-           //	GestionUsuario.loginUsuario();
+            	Usuario us=crearUsuario();
+            	GestionUsuario.insertarUsuario(us);
+                break;
+                
+            case 2: 
+            	System.out.println("Ingresa tu mail:");
+            	String email=sc.nextLine();
+            	System.out.println("Ingresa tu contraseña:");
+            	String contraseña=sc.nextLine();
+            	GestionUsuario.loginUsuario(email, contraseña);
                 break;      
     
             case 3: 
