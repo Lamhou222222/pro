@@ -1,4 +1,4 @@
-package Connectores;
+package repositorios;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

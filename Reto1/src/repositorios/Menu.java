@@ -1,4 +1,4 @@
-package Connectores;
+package repositorios;
 
 import java.sql.SQLException;
 import java.util.Scanner;
