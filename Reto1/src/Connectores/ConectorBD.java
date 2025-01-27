@@ -8,7 +8,7 @@ public class ConectorBD {
 	
    public static Connection conexion;
    
-    
+    //Metodos
     public static void conectar(){
 
         try{
@@ -33,8 +33,11 @@ public class ConectorBD {
         }
     }
     public static void cerrarConexion() throws SQLException {
-    	// TODO Auto-generated method stub
     	conexion.close();
+    }
+    
+    public static void getConexion() {
+    	
     }
 
 }

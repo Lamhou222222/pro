@@ -3,15 +3,19 @@ package clases;
 import java.sql.Date;
 
 public class Reserva {
+	
+	//Atributos
 	private Date fechaEntrada;
 	private Date fechaSalida;
 	private int numHuespedes;
 	private double totalPagado;
 	
+	//Constructor vacío
 	public Reserva() {
 		super();
 	}
 
+	//Constructor con atributos
 	public Reserva(Date fechaEntrada, Date fechaSalida, int numHuespedes, double totalPagado) {
 		super();
 		this.fechaEntrada = fechaEntrada;
@@ -19,7 +23,8 @@ public class Reserva {
 		this.numHuespedes = numHuespedes;
 		this.totalPagado = totalPagado;
 	}
-
+	
+	//Getters y Setters
 	public Date getFechaEntrada() {
 		return fechaEntrada;
 	}
@@ -51,11 +56,13 @@ public class Reserva {
 	public void setTotalPagado(double totalPagado) {
 		this.totalPagado = totalPagado;
 	}
-	
-	
-	
-	
-	
+
+	//ToString
+	@Override
+	public String toString() {
+		return "Reserva [Fecha Entrada: " + fechaEntrada + ", Fecha Salida: " + fechaSalida + ", Numero de Huespedes: "
+				+ numHuespedes + ", Total Pagado: " + totalPagado + "]";
+	}
 	
 	
 }

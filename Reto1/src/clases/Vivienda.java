@@ -1,6 +1,8 @@
 package clases;
 
 public class Vivienda {
+	
+	//Atributos
 	protected int codVivienda;
 	protected String ciudad;
 	protected String direccion;
@@ -8,10 +10,12 @@ public class Vivienda {
 	protected String descripcion;
 	protected double precioDia;
 	
+	//Constructor vacío
 	public Vivienda() {
 		super();
 	}
 
+	//Constructor con atributos
 	public Vivienda(int codVivienda, String ciudad, String direccion, int numHab, String descripcion,
 			double precioDia) {
 		super();
@@ -23,6 +27,7 @@ public class Vivienda {
 		this.precioDia = precioDia;
 	}
 
+	//Getters y Setters
 	public int getCodVivienda() {
 		return codVivienda;
 	}
@@ -69,6 +74,13 @@ public class Vivienda {
 
 	public void setPrecioDia(double precioDia) {
 		this.precioDia = precioDia;
+	}
+
+	//ToString
+	@Override
+	public String toString() {
+		return "Vivienda [codVivienda=" + codVivienda + ", ciudad=" + ciudad + ", direccion=" + direccion + ", numHab="
+				+ numHab + ", descripcion=" + descripcion + ", precioDia=" + precioDia + "]";
 	}
 	
 	

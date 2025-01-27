@@ -1,18 +1,23 @@
 package clases;
 
 public class Usuario {
+	
+	//Atributos
 	private String dni;
 	private String nombre;
 	private String apellido;
 	private String nomUs;
 	private String email;
 	private String contraseña;
+	private String rol;
 	
+	//Constructor vacío
 	public Usuario() {
 		super();
 	}
 
-	public Usuario(String dni, String nombre, String apellido, String nomUs, String email, String contraseña) {
+	//Constructor con atributos
+	public Usuario(String dni, String nombre, String apellido, String nomUs, String email, String contraseña, String rol) {
 		super();
 		this.dni = dni;
 		this.nombre = nombre;
@@ -20,8 +25,10 @@ public class Usuario {
 		this.nomUs = nomUs;
 		this.email = email;
 		this.contraseña = contraseña;
+		this.rol= rol;
 	}
 
+	//Getters y Setters
 	public String getDni() {
 		return dni;
 	}
@@ -69,9 +76,19 @@ public class Usuario {
 	public void setContraseña(String contraseña) {
 		this.contraseña = contraseña;
 	}
+	public String getRol() {
+		return rol;
+	}
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
 	
-	
-	
+	//ToString
+	@Override
+	public String toString() {
+		return "Usuario [DNI: " + dni + ", Nombre: " + nombre + ", Apellido: " + apellido + ", NomUs: " + nomUs + ", Email: "
+				+ email + ", Contraseña: " + contraseña + "]";
+	}
 	
 	
 	

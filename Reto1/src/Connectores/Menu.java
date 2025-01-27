@@ -2,10 +2,45 @@ package Connectores;
 
 import java.sql.SQLException;
 import java.util.Scanner;
+
+import clases.Usuario;
 public class Menu {
 	
+	
+	public static void mostrarMenuUsuario(Scanner sc) {
+		int opcion = 0;
+		while (opcion!=3) {
+		System.out.println("\n--- Menú Usuario ---");
+        System.out.println("1.- Crear Usuario");
+        System.out.println("2.- Login Usuario");
+        System.out.println("3.- Salir");
+        System.out.print("Selecciona una opción: ");
+        
+       opcion = sc.nextInt();
+        sc.nextLine(); // Limpiar el buffer
 
-	 public static void mostrarMenu(Scanner sc) {
+        switch (opcion) {
+            case 1:
+            	   Usuario us=GestionDatos.pedirDatosUsuario();
+            	   	GestionUsuario.insertarUsuario(us);
+                    break;
+
+            case 2: 	
+           	//GestionVivienda.loginUsuario(sc);
+                break;      
+    
+            case 3: 
+                System.out.println("Saliendo del menú. ¡Hasta luego!");
+                break;
+                
+            default:
+                System.out.println("Opción no válida. Intenta de nuevo.");
+        }
+    }
+
+	}
+
+	 public static void mostrarMenuVivienda(Scanner sc) {
 	        boolean salir = false;
 
 	        while (!salir) {
