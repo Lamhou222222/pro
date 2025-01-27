@@ -26,8 +26,22 @@ public class GestionVivienda {
             int numHab = Integer.parseInt(scanner.nextLine());
             System.out.print("Precio por día: ");
             double precioDia = Double.parseDouble(scanner.nextLine());
+            System.out.println("TipoVivienda (Villa/Piso):");
+            String tipo_Vivienda= scanner.nextLine();
+            int dias =0;
+            int semanas =0;
+            if(tipo_Vivienda.equals("Villa")) {
+            	System.out.println("Cuantas dias :");
+            	dias =Integer.parseInt(scanner.nextLine());
+            	
+            }
+            else if (tipo_Vivienda.equals("Piso")){
+            	System.out.println("Cuantas semanas :");
+            	 semanas =Integer.parseInt(scanner.nextLine());
+            }
+            
 
-            String query = "INSERT INTO viviendas (ciudad, direccion, descripcion, num_hab, precio_dia) VALUES (?, ?, ?, ?, ?)";
+            String query = "INSERT INTO vivienda (ciudad, direccion, descripcion, num_hab, precio_dia,Tipo_Vivienda,Dias,Semanas) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             
             try ( 
                  PreparedStatement statement = conexion.prepareStatement(query)) {
@@ -38,6 +52,15 @@ public class GestionVivienda {
                 statement.setString(3, descripcion);
                 statement.setInt(4, numHab);
                 statement.setDouble(5, precioDia);
+                statement.setString(6,tipo_Vivienda);
+                if(tipo_Vivienda.equals("Villa")) {
+                	 statement.setInt(7,(Integer)null);
+                	 statement.setInt(8,semanas);
+                }
+                else if(tipo_Vivienda.equals("Piso")) {
+                	
+                }
+                
 
                 int rowsInserted = statement.executeUpdate();
                 if (rowsInserted > 0) {
