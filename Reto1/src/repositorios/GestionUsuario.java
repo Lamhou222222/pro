@@ -23,7 +23,6 @@ public class GestionUsuario {
 			statement.setString(7,  usuario.getRol());
 				
 			statement.executeUpdate();
-			System.out.println("Usuario creado con exito.");
 				
 		} catch (SQLException e) {
 				
@@ -32,7 +31,7 @@ public class GestionUsuario {
 		}
 			
 	}
-	private static void loginUsuario(String NomUs, String Rol) {
+	private static void loginUsuario(String NomUs) {
 		String consulta= "SELECT * FROM usuario WHERE NomUs=?";
 		try {
 			PreparedStatement statement=ConectorBD.conexion.prepareStatement(consulta);
@@ -40,12 +39,12 @@ public class GestionUsuario {
 			ResultSet rs=statement.executeQuery();
 			
 			while(rs.next()) {
-				if(Rol=="Admin"){
-					System.out.println("Bienvenido Admin "+NomUs);
-				}else if(Rol=="Usuario") {
-					System.out.println("Bienvenido "+NomUs);
+				//if(Rol=="Admin"){
+					//System.out.println("Bienvenido Admin "+NomUs);
+				//}else if(Rol=="Usuario") {
+					//System.out.println("Bienvenido "+NomUs);
 				}
-			}
+			//}
 		} catch (SQLException e) {
 			
 			e.printStackTrace();

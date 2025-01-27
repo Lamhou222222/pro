@@ -1,9 +1,12 @@
-package repositorios;
+package view;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
 import clases.Usuario;
+import repositorios.GestionDatos;
+import repositorios.GestionUsuario;
+import repositorios.GestionVivienda;
 public class Menu {
 	
 	
@@ -15,18 +18,17 @@ public class Menu {
         System.out.println("2.- Login Usuario");
         System.out.println("3.- Salir");
         System.out.print("Selecciona una opción: ");
-        
-       opcion = sc.nextInt();
+        opcion = sc.nextInt();
         sc.nextLine(); // Limpiar el buffer
 
         switch (opcion) {
             case 1:
-            	   Usuario us=GestionDatos.pedirDatosUsuario();
+            	   Usuario us=GestionDatos.crearUsuario();
             	   	GestionUsuario.insertarUsuario(us);
                     break;
 
             case 2: 	
-           	//GestionVivienda.loginUsuario(sc);
+           //	GestionUsuario.loginUsuario();
                 break;      
     
             case 3: 

@@ -16,11 +16,7 @@ public class ConectorBD {
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Driver cargado");        
             try{
-            //Establecemos la conexion con la BD            
-            //La BD se encuentra en el localhost(en mi ordenador)
-            //El usuario es root y la contraseña es 1234
-            //La conexion se hace a traves del puerto 3306
-            //La BD se llama cine, es la que viene por defecto en MySQL
+      
             conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/MR_ROBOT","root","1DAW3_BBDD");
           
             System.out.println("Conexion establecida");
