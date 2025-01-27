@@ -3,12 +3,15 @@ package clases;
 public class Vivienda {
 	
 	//Atributos
-	protected int codVivienda;
+	//protected int codVivienda;
 	protected String ciudad;
 	protected String direccion;
 	protected int numHab;
 	protected String descripcion;
 	protected double precioDia;
+	protected String tipo_Vivienda;
+	protected int dias;
+	protected int semanas;
 	
 	//Constructor vacío
 	public Vivienda() {
@@ -16,25 +19,21 @@ public class Vivienda {
 	}
 
 	//Constructor con atributos
-	public Vivienda(int codVivienda, String ciudad, String direccion, int numHab, String descripcion,
-			double precioDia) {
+	public Vivienda(String ciudad, String direccion, int numHab, String descripcion,
+			double precioDia, String tipo_Vivienda, int dias, int semanas) {
 		super();
-		this.codVivienda = codVivienda;
+		//this.codVivienda = codVivienda;
 		this.ciudad = ciudad;
 		this.direccion = direccion;
 		this.numHab = numHab;
 		this.descripcion = descripcion;
 		this.precioDia = precioDia;
+		this.tipo_Vivienda=tipo_Vivienda;
+		this.dias=dias;
+		this.semanas=semanas;
 	}
 
 	//Getters y Setters
-	public int getCodVivienda() {
-		return codVivienda;
-	}
-
-	public void setCodVivienda(int codVivienda) {
-		this.codVivienda = codVivienda;
-	}
 
 	public String getCiudad() {
 		return ciudad;
@@ -76,12 +75,33 @@ public class Vivienda {
 		this.precioDia = precioDia;
 	}
 
-	//ToString
-	@Override
-	public String toString() {
-		return "Vivienda [codVivienda=" + codVivienda + ", ciudad=" + ciudad + ", direccion=" + direccion + ", numHab="
-				+ numHab + ", descripcion=" + descripcion + ", precioDia=" + precioDia + "]";
+	public String getTipo_Vivienda() {
+		return tipo_Vivienda;
 	}
+
+	public void setTipo_Vivienda(String tipo_Vivienda) {
+		this.tipo_Vivienda = tipo_Vivienda;
+	}
+
+	public int getDias() {
+		return dias;
+	}
+
+	public void setDias(int dias) {
+		this.dias = dias;
+	}
+
+	public int getSemanas() {
+		return semanas;
+	}
+
+	public void setSemanas(int semanas) {
+		this.semanas = semanas;
+	}
+
+	
+	//ToString
+
 	
 	
 	

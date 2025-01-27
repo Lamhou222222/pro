@@ -3,6 +3,7 @@ package repositorios;
 import java.util.Scanner;
 
 import clases.Usuario;
+import clases.Vivienda;
 
 public class GestionDatos {
 
@@ -32,6 +33,34 @@ public class GestionDatos {
 		Usuario usuario=new Usuario(dni, nombre, apellido, nomUs, email, contraseña, rol );
 		return usuario;	
 	}
+	public static Vivienda agregarVivienda() {
+		System.out.println("\n--- Añadir Vivienda ---");
+        System.out.print("Ciudad: ");
+        String ciudad = sc.nextLine();
+        System.out.print("Dirección: ");
+        String direccion = sc.nextLine();
+        System.out.print("Descripción: ");
+        String descripcion = sc.nextLine();
+        System.out.print("Número de habitaciones: ");
+        int numHab = sc.nextInt();
+        System.out.print("Precio por día: ");
+        double precioDia = sc.nextDouble();
+        System.out.println("TipoVivienda (Villa/Piso):");
+        String tipo_Vivienda= sc.nextLine();
+        int dias =0;
+        int semanas =0;
+        if(tipo_Vivienda.equals("Villa")) {
+        	System.out.println("Cuantas dias :");
+        	dias =sc.nextInt();
+        }
+        else if (tipo_Vivienda.equals("Piso")){
+        	System.out.println("Cuantas semanas :");
+        	 semanas =sc.nextInt();
+        }
+        Vivienda vivienda =new Vivienda (ciudad, direccion, numHab, descripcion, precioDia, tipo_Vivienda, dias, semanas);
+        return vivienda;
+	}
+
 	public static double modificarPrecioVivienda(double precio) {
 		
 		

@@ -13,41 +13,15 @@ public class GestionVivienda {
 	
     private Scanner scanner = new Scanner(System.in);
 
-    public static void agregarVivienda(Scanner scanner) {
-        System.out.println("\n--- Añadir Vivienda ---");
-        try {
-            System.out.print("Ciudad: ");
-            String ciudad = scanner.nextLine();
-            System.out.print("Dirección: ");
-            String direccion = scanner.nextLine();
-            System.out.print("Descripción: ");
-            String descripcion = scanner.nextLine();
-            System.out.print("Número de habitaciones: ");
-            int numHab = Integer.parseInt(scanner.nextLine());
-            System.out.print("Precio por día: ");
-            double precioDia = Double.parseDouble(scanner.nextLine());
-            System.out.println("TipoVivienda (Villa/Piso):");
-            String tipo_Vivienda= scanner.nextLine();
-            int dias =0;
-            int semanas =0;
-            if(tipo_Vivienda.equals("Villa")) {
-            	System.out.println("Cuantas dias :");
-            	dias =Integer.parseInt(scanner.nextLine());
-            	
-            }
-            else if (tipo_Vivienda.equals("Piso")){
-            	System.out.println("Cuantas semanas :");
-            	 semanas =Integer.parseInt(scanner.nextLine());
-            }
-            
-
+    public static void insertarVivienda(Vivienda vivienda) {
+        
             String query = "INSERT INTO vivienda (ciudad, direccion, descripcion, num_hab, precio_dia,Tipo_Vivienda,Dias,Semanas) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             
             try ( 
                  PreparedStatement statement = conexion.prepareStatement(query)) {
 
                
-                statement.setString(1, ciudad);
+                statement.setString(1, vivienda.g());
                 statement.setString(2, direccion);
                 statement.setString(3, descripcion);
                 statement.setInt(4, numHab);
@@ -60,7 +34,6 @@ public class GestionVivienda {
                 else if(tipo_Vivienda.equals("Piso")) {
                 	
                 }
-                
 
                 int rowsInserted = statement.executeUpdate();
                 if (rowsInserted > 0) {
