@@ -26,7 +26,7 @@ public class MenuVivienda {
 
 	            switch (opcion) {
 	                case 1:
-	                  Vivienda viv=GestionDatos.agregarVivienda();
+	                  Vivienda viv=agregarVivienda();
 	                        break;
 	    
 	                case 2:
@@ -79,7 +79,10 @@ public class MenuVivienda {
 	       	       
 	                System.out.print("Introduce el código de la vivienda que deseas eliminar: ");
 	                int codVivienda = sc.nextInt();
-	                
+	                 
+	         public static Vivienda MostrarViviendas() {
+	        	 System.out.println("");
+	         }
 	                
 	 }
 }

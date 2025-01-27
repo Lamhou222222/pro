@@ -41,7 +41,13 @@ public class GestionVivienda {
                 catch (SQLException e) {
         			e.printStackTrace();
         			System.out.println("Error al hacer la consulta: "+insert);
+                }
         		}
+            public static void mostrarViviendasBD() {
+            	
+                    String Select = "SELECT * FROM mr_robot.vivienda";
+                    
+                 
                 
             }
   
