@@ -53,13 +53,10 @@ public class GestionVivienda {
                 statement.setInt(4, numHab);
                 statement.setDouble(5, precioDia);
                 statement.setString(6,tipo_Vivienda);
-                if(tipo_Vivienda.equals("Villa")) {
-                	 statement.setInt(7,(Integer)null);
-                	 statement.setInt(8,semanas);
-                }
-                else if(tipo_Vivienda.equals("Piso")) {
-                	
-                }
+                statement.setInt(7,dias);
+                statement.setInt(8,semanas);
+                
+                
                 
 
                 int rowsInserted = statement.executeUpdate();
@@ -86,7 +83,7 @@ public class GestionVivienda {
             String query = "DELETE FROM viviendas WHERE id = ?";
             
             try ( 
-                 PreparedStatement statement = conexion.prepareStatement(query)) {
+                 PreparedStatement statement = ConectorBD.conexion.prepareStatement(query)) {
 
                 statement.setInt(1, codVivienda);
 
