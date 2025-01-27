@@ -10,7 +10,7 @@ public class GestionDatos {
 	
 	public static Usuario pedirDatosUsuario() {
 		
-		System.out.println("Nombre:");
+		System.out.println("Nombres:");
 		String nombre=sc.nextLine();
 		System.out.println("Apellido:");
 		String apellido=sc.nextLine();
