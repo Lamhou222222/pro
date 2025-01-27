@@ -98,13 +98,8 @@ public class Vivienda {
 	public void setSemanas(int semanas) {
 		this.semanas = semanas;
 	}
-
 	
 	//ToString
 
-	
-	
-	
-	
 	
 }
