@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import clases.Usuario;
+import view.MenuVivienda;
 
 public class GestionUsuario {
 	
@@ -31,20 +32,23 @@ public class GestionUsuario {
 		}
 			
 	}
-	private static void loginUsuario(String NomUs) {
-		String consulta= "SELECT * FROM usuario WHERE NomUs=?";
+	public static void loginUsuario(String email, String Contraseña) {
+		
+		String consulta= "SELECT * FROM usuario WHERE email=? & Contraseña=?";
 		try {
 			PreparedStatement statement=ConectorBD.conexion.prepareStatement(consulta);
-			statement.setString(1, NomUs);
+			statement.setString(1, email);
+			statement.setString(2, Contraseña);
 			ResultSet rs=statement.executeQuery();
 			
 			while(rs.next()) {
-				//if(Rol=="Admin"){
-					//System.out.println("Bienvenido Admin "+NomUs);
-				//}else if(Rol=="Usuario") {
-					//System.out.println("Bienvenido "+NomUs);
+				if(email.equals("ikdgg@plaiaundi.net") || email.equals("ikdgs@plaiaundi.net")) {
+					MenuVivienda.mostrarMenuVivienda(null);
+				}else {
+					
+					
 				}
-			//}
+			}
 		} catch (SQLException e) {
 			
 			e.printStackTrace();

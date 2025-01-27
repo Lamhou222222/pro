@@ -7,103 +7,48 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import clases.Vivienda;
+
 
 public class GestionVivienda {
 	public static  Connection conexion;
 	
     private Scanner scanner = new Scanner(System.in);
 
-    public static void agregarVivienda(Scanner scanner) {
-        System.out.println("\n--- Añadir Vivienda ---");
-        try {
-            System.out.print("Ciudad: ");
-            String ciudad = scanner.nextLine();
-            System.out.print("Dirección: ");
-            String direccion = scanner.nextLine();
-            System.out.print("Descripción: ");
-            String descripcion = scanner.nextLine();
-            System.out.print("Número de habitaciones: ");
-            int numHab = Integer.parseInt(scanner.nextLine());
-            System.out.print("Precio por día: ");
-            double precioDia = Double.parseDouble(scanner.nextLine());
-            System.out.println("TipoVivienda (Villa/Piso):");
-            String tipo_Vivienda= scanner.nextLine();
-            int dias =0;
-            int semanas =0;
-            if(tipo_Vivienda.equals("Villa")) {
-            	System.out.println("Cuantas dias :");
-            	dias =Integer.parseInt(scanner.nextLine());
-            	
-            }
-            else if (tipo_Vivienda.equals("Piso")){
-            	System.out.println("Cuantas semanas :");
-            	 semanas =Integer.parseInt(scanner.nextLine());
-            }
-            
-
-            String query = "INSERT INTO vivienda (ciudad, direccion, descripcion, num_hab, precio_dia,Tipo_Vivienda,Dias,Semanas) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    public static void insertarVivienda(Vivienda vivienda) {
+        
+            String insert = "INSERT INTO vivienda (ciudad, direccion, descripcion, num_hab, precio_dia,Tipo_Vivienda,Dias,Semanas) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             
             try ( 
-                 PreparedStatement statement = conexion.prepareStatement(query)) {
+                 PreparedStatement statement = ConectorBD.conexion.prepareStatement(insert)) {
 
                
-                statement.setString(1, ciudad);
-                statement.setString(2, direccion);
-                statement.setString(3, descripcion);
-                statement.setInt(4, numHab);
-                statement.setDouble(5, precioDia);
-                statement.setString(6,tipo_Vivienda);
-                statement.setInt(7,dias);
-                statement.setInt(8,semanas);
+                statement.setString(1, vivienda.getCiudad());
+                statement.setString(2, vivienda.getDireccion());
+                statement.setString(3, vivienda.getDescripcion());
+                statement.setInt(4,vivienda.getNumHab() );
+                statement.setDouble(5,vivienda.getPrecioDia() );
+                statement.setString(6,vivienda.getTipo_Vivienda());
+                statement.setInt(7,vivienda.getDias());
+                statement.setInt(8,vivienda.getSemanas());
                 
-                
-                
-
                 int rowsInserted = statement.executeUpdate();
+            
                 if (rowsInserted > 0) {
                     System.out.println("¡Vivienda añadida con éxito!");
                 }
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Error: Entrada inválida. Por favor, introduce valores numéricos donde corresponda.");
-        } catch (SQLException e) {
-            System.out.println("Error de SQL: " + e.getMessage());
-        } catch (Exception e) {
-            System.out.println("Error inesperado: " + e.getMessage());
-        }
-    }
-
-    //  eliminar una vivienda
-    public static void eliminarVivienda(Scanner scanner) {
-        System.out.println("\n--- Eliminar Vivienda ---");
-        try {
-            System.out.print("Introduce el código de la vivienda que deseas eliminar: ");
-            int codVivienda = Integer.parseInt(scanner.nextLine());
-
-            String query = "DELETE FROM viviendas WHERE id = ?";
-            
-            try ( 
-                 PreparedStatement statement = ConectorBD.conexion.prepareStatement(query)) {
-
-                statement.setInt(1, codVivienda);
-
-                int rowsDeleted = statement.executeUpdate();
-                if (rowsDeleted > 0) {
-                    System.out.println("¡Vivienda eliminada con éxito!");
-                } else {
-                    System.out.println("No se encontró ninguna vivienda con el código proporcionado.");
-                }
+                catch (SQLException e) {
+        			e.printStackTrace();
+        			System.out.println("Error al hacer la consulta: "+insert);
+        		}
+                
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Error: Entrada inválida. Por favor, introduce un código numérico.");
-        } catch (SQLException e) {
-            System.out.println("Error de SQL: " + e.getMessage());
-        } catch (Exception e) {
-            System.out.println("Error inesperado: " + e.getMessage());
-        }
-    }
-
+  
+ 
    
+       
+  
 
     
 }
