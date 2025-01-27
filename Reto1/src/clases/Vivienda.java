@@ -3,7 +3,6 @@ package clases;
 public class Vivienda {
 	
 	//Atributos
-	//protected int codVivienda;
 	protected int codVivienda;
 	protected String ciudad;
 	protected String direccion;
@@ -99,13 +98,8 @@ public class Vivienda {
 	public void setSemanas(int semanas) {
 		this.semanas = semanas;
 	}
-
 	
 	//ToString
 
-	
-	
-	
-	
 	
 }
