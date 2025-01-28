@@ -1,6 +1,6 @@
 package view;
 
-import java.util.Scanner;
+import java.util.Scanner
 
 import clases.Usuario;
 
