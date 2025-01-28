@@ -1,15 +1,15 @@
 package view;
 
-import java.util.Scanner;
+import java.util.Scanner
 
-import clases.Vivienda;
+
 import repositorios.GestionOficina;
 import repositorios.GestionVivienda;
 
 
 
 public class MenuOficina {
-	 public static void mostrarMenuVivienda(Scanner sc) {
+	 public static void mostrarMenuVivienda() {
 	        boolean salir = false;
 
 	        while (!salir) {
@@ -28,8 +28,14 @@ public class MenuOficina {
 	                        break;
 	    
 	                case 2:
-	                	GestionVivienda.mostrarViviendasBD();
+	                	GestionOficina.Datosoficina()
 	                    break;
+	                case 3: 
+	                    System.out.println("Saliendo del menú. ¡Hasta luego!");
+	                    break;
+	                    
+	                default:
+	                    System.out.println("Opción no válida. Intenta de nuevo.");
 	            }
 	        }
 	 }

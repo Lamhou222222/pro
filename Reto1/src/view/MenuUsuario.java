@@ -1,6 +1,6 @@
 package view;
 
-import java.util.Scanner;
+import java.util.Scanner
 
 import clases.Usuario;
 
@@ -56,12 +56,18 @@ public class MenuUsuario {
 			System.out.println("Ingresa tu email:");
 			String email=sc.nextLine();
 			System.out.println("Ingresa tu contraseña:");
-			String contraseña=sc.nextLine();
+			String contraseña;
+			do {
+			contraseña=sc.nextLine();
+			if(contraseña.length()<8) {
+				System.out.println("Introduce una contraseña mínimo con 8 caracteres:");
+			}
+			}while(contraseña.length()<8);
 			String rol;
 			if(email.equals("ikdgg@plaiaundi.net") || email.equals("ikdgs@plaiaundi.net")) {
-				rol="Admin";
+				rol="Administrador";
 			}else {
-				rol="Usuario";
+				rol="Cliente";
 			}
 			
 			Usuario usuario=new Usuario(dni, nombre, apellido, nomUs, email, contraseña, rol );
