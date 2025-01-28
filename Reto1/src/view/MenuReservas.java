@@ -1,5 +1,14 @@
 package view;
 
-public class MenuReservas {
+import java.util.Scanner;
 
-}
+
+
+public class MenuReservas {
+	 public static void mostrarMenuReservaCliente(Scanner sc) {
+	       
+	        }
+	 
+	 }
+
+
