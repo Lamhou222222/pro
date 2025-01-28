@@ -34,7 +34,7 @@ public class GestionUsuario {
 	}
 	public static void loginUsuario(String email, String Contraseña) {
 		
-		String consulta= "SELECT * FROM usuario WHERE email=? & Contraseña=?";
+		String consulta= "SELECT * FROM usuario WHERE email=? AND Contraseña=?";
 		try {
 			PreparedStatement statement=ConectorBD.conexion.prepareStatement(consulta);
 			statement.setString(1, email);
@@ -45,7 +45,7 @@ public class GestionUsuario {
 				if(email.equals("ikdgg@plaiaundi.net") || email.equals("ikdgs@plaiaundi.net")) {
 					MenuVivienda.mostrarMenuVivienda(null);
 				}else {
-					MenuOficina.mostrarMenuOficina();
+					//MenuOficina.mostrarMenuOficina();
 					
 					
 					
