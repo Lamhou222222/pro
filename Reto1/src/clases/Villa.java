@@ -13,7 +13,7 @@ public class Villa extends Vivienda {
 	//Constructor con atributos
 	public Villa(int codVivienda, String ciudad, String direccion, int numHab, String descripcion, double precioDia,
 			int semanas) {
-		super(codVivienda, ciudad, direccion, numHab, descripcion, precioDia);
+		super();
 		this.semanas = semanas;
 	}
 	

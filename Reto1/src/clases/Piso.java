@@ -13,7 +13,7 @@ public class Piso extends Vivienda {
 	//Constructor con atributos
 	public Piso(int codVivienda, String ciudad, String direccion, int numHab, String descripcion, double precioDia,
 			int dias) {
-		super(codVivienda, ciudad, direccion, numHab, descripcion, precioDia);
+		super();
 		this.dias = dias;
 	}
 	

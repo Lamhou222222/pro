@@ -43,7 +43,7 @@ public class MenuUsuario {
         }
 		}
     }
-		public static Usuario crearUsuario() {
+	public static Usuario crearUsuario() {
 			
 			System.out.println("Ingresa tu DNI:");
 			String dni=sc.nextLine();
@@ -68,5 +68,9 @@ public class MenuUsuario {
 			return usuario;	
 
 	}
+	public static void menuLogin() {
+		
+	}
+	
 
 }

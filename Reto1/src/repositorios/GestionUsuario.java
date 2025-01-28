@@ -45,7 +45,7 @@ public class GestionUsuario {
 				if(email.equals("ikdgg@plaiaundi.net") || email.equals("ikdgs@plaiaundi.net")) {
 					MenuVivienda.mostrarMenuVivienda(null);
 				}else {
-					MenuOficina.mostrarMenuOficina
+					MenuOficina.mostrarMenuOficina();
 					
 					
 					
