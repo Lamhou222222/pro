@@ -10,8 +10,8 @@ public class Menu {
 	
 
 		public static void MenuCompleto() {
-			ConectorBD.conectar();
 			
+			ConectorBD.conectar();
 			MenuUsuario.mostrarMenuUsuario(sc);
 			try {
 				ConectorBD.cerrarConexion();

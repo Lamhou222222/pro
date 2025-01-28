@@ -11,7 +11,6 @@ import clases.Vivienda;
 
 
 public class GestionVivienda {
-	public static  Connection conexion;
 	
     private Scanner scanner = new Scanner(System.in);
 
@@ -46,14 +45,15 @@ public class GestionVivienda {
             	System.out.println("Lista de viviendas");
                    String Select = "SELECT * FROM mr_robot.vivienda";
                 	try {
-        				PreparedStatement statement=conexion.prepareStatement(Select);
+        				PreparedStatement statement=ConectorBD.conexion.prepareStatement(Select);
         				ResultSet rs=statement.executeQuery(Select);
         				
         				while(rs.next()) {
         					System.out.println("Codigo Vivienda: "+rs.getInt("CodVivienda")+
         							", Ciudad: "+rs.getString("Ciudad")+", Dirección: "+rs.getString("Dirección")
         							+", Numero Habitantes: "+rs.getInt("NumHab")+", Descripción: "+rs.getString("descripcion")
-        							+", Precio/dia: "+rs.getDouble("precioDia")+", Tipo Vivienda: "+rs.getString("tipoVivienda")+", Dias: "+rs.getInt("dias")+", Semanas: "+rs.getInt("semanas"));
+        							+", Precio/dia: "+rs.getDouble("precioDia")+", Tipo Vivienda: "+rs.getString("tipoVivienda")
+        							+", Dias: "+rs.getInt("dias")+", Semanas: "+rs.getInt("semanas"));
         				}
         			} catch (SQLException e) {
         				

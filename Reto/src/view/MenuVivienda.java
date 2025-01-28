@@ -8,8 +8,6 @@ import repositorios.GestionVivienda;
 
 public class MenuVivienda {
 	
-	
-	
 	 public static void mostrarMenuVivienda(Scanner sc) {
 	        boolean salir = false;
 
@@ -68,27 +66,19 @@ public class MenuVivienda {
 	            int dias =0;
 	            int semanas =0;
 	            do {
-		            if(tipo_Vivienda.equals("Villa")) {
-		            	System.out.println("Cuantas dias :");
+		            if(tipo_Vivienda.equalsIgnoreCase("Villa")) {
+		            	System.out.println("Cuantas semanas :");
 		            	dias =sc.nextInt();
 		            }
-		            else if (tipo_Vivienda.equals("Piso")){
-		            	System.out.println("Cuantas semanas :");
+		            else if (tipo_Vivienda.equalsIgnoreCase("Piso")){
+		            	System.out.println("Cuantos dias :");
 		            	 semanas =sc.nextInt();
 		            
 		            }else {
 		            	System.out.println("Error. Introduce Villa o Piso:");
 		            }
-	            }while(tipo_Vivienda!="Villa" || tipo_Vivienda!="Piso");
-	            
-	            if(tipo_Vivienda.equals("Villa")) {
-	            	System.out.println("Cuantas dias :");
-	            	dias =sc.nextInt();
-	            }
-	            else if (tipo_Vivienda.equals("Piso")){
-	            	System.out.println("Cuantas semanas :");
-	            	 semanas =sc.nextInt();
-	            }
+	            }while(!tipo_Vivienda.equalsIgnoreCase("Villa") || !tipo_Vivienda.equalsIgnoreCase("Piso"));
+	           
 	            Vivienda vivienda =new Vivienda (ciudad, direccion, numHab, descripcion, precioDia, tipo_Vivienda, dias, semanas);
 
 	            return vivienda;

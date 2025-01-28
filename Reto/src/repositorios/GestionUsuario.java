@@ -3,12 +3,14 @@ package repositorios;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 import clases.Usuario;
+import clases.Vivienda;
+import view.MenuOficina;
 import view.MenuVivienda;
 
 public class GestionUsuario {
-	
 
 	public static void insertarUsuario(Usuario usuario) {
 		String insert="INSERT INTO Usuario (DNI, Nombre, Apellido, NomUs, Email, Contraseña, Rol) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -33,7 +35,7 @@ public class GestionUsuario {
 	}
 	public static void loginUsuario(String email, String Contraseña) {
 		
-		String consulta= "SELECT * FROM usuario WHERE email=? AND Contraseña=?";
+		String consulta= "SELECT Rol FROM usuario WHERE email=? AND Contraseña=?";
 		try {
 			PreparedStatement statement=ConectorBD.conexion.prepareStatement(consulta);
 			statement.setString(1, email);
@@ -41,20 +43,20 @@ public class GestionUsuario {
 			ResultSet rs=statement.executeQuery();
 			
 			while(rs.next()) {
-				if(email.equals("ikdgg@plaiaundi.net") || email.equals("ikdgs@plaiaundi.net")) {
-					MenuVivienda.mostrarMenuVivienda(null);
-				}else if (!rs.next()) {
-					    System.out.println("Usuario o contraseña incorrectos.");
-					    return;
-
-					//MenuOficina.mostrarMenuOficina();
-					
-				}
+				String rol = rs.getString("Rol");
+				if ("Administrador".equalsIgnoreCase(rol)) {
+	                System.out.println("Bienvenido Administrador.");
+	                MenuVivienda.mostrarMenuVivienda(null);
+	            } else if ("Cliente".equalsIgnoreCase(rol)) {
+	                System.out.println("Bienvenido Cliente.");
+	                MenuOficina.menuOficina(null);
+	            } else {
+	            System.out.println("Usuario o contraseña incorrectos.");
+	            }
 			}
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-			System.out.println("Error al hacer login: "+consulta);
-		}
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        System.out.println("Error al realizar el login.");
+	      }
 	}
 }

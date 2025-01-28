@@ -10,7 +10,7 @@ public class GestionOficina {
     public static void mostrarOficinaViviendasBD(int id) {
         System.out.println("Lista de Viviendas");
 
-        String Select = "SELECT * FROM mr_robot.vivienda WHERE id = ?";
+        String Select = "SELECT * FROM mr_robot.vivienda WHERE IdOficina = ?";
         try {
             PreparedStatement statement = ConectorBD.conexion.prepareStatement(Select);
             // Establecer el parámetro de la consulta

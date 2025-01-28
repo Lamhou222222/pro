@@ -24,13 +24,15 @@ public class MenuUsuario {
             case 1:
             	Usuario us=crearUsuario();
             	GestionUsuario.insertarUsuario(us);
+            	System.out.println("¡Usuario registrado con exito!");
                 break;
                 
             case 2: 
             	System.out.println("Ingresa tu mail:");
             	String email=sc.nextLine();
-            	System.out.println("Ingresa tu contraseña:");
+            	System.out.println("Ingresa tu contraseña(mínimo 8 caracteres):");
             	String contraseña=sc.nextLine();
+            	
             	GestionUsuario.loginUsuario(email, contraseña);
                 break;      
     
@@ -40,13 +42,20 @@ public class MenuUsuario {
                 
             default:
                 System.out.println("Opción no válida. Intenta de nuevo.");
+                break;
         }
 		}
     }
 	public static Usuario crearUsuario() {
 			
 			System.out.println("Ingresa tu DNI:");
-			String dni=sc.nextLine();
+			String dni;
+			do {
+			dni=sc.nextLine();
+			if(dni.length()!=9) {
+				System.out.println("Error. Introduce un DNI válido:");
+			}
+			}while(dni.length()!=9);
 			System.out.println("Ingresa tu nombre:");
 			String nombre=sc.nextLine();
 			System.out.println("Ingresa tu apellido:");
