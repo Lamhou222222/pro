@@ -15,7 +15,7 @@ public class MenuVivienda {
 	        while (!salir) {
 	            System.out.println("\n--- Menú Vivienda ---");
 	            System.out.println("1.- Agregar Vivienda");
-	            System.out.println("2.- Eliminar Vivienda");
+	            System.out.println("2.- Mostrar Viviendas");
 	            System.out.println("3.- Modificar Vivienda");
 	            System.out.println("4.- Buscar Vivienda");
 	            System.out.println("5.- Salir");
@@ -27,10 +27,11 @@ public class MenuVivienda {
 	            switch (opcion) {
 	                case 1:
 	                  Vivienda viv=agregarVivienda();
+	                  GestionVivienda.insertarVivienda(viv);
 	                        break;
 	    
 	                case 2:
-	                	GestionVivienda.eliminarVivienda(sc);
+	                	GestionVivienda.mostrarViviendasBD();
 	                    break;
 	                case 3:
 	                   //modificarVivienda()
@@ -71,18 +72,10 @@ public class MenuVivienda {
 	            	System.out.println("Cuantas semanas :");
 	            	 semanas =sc.nextInt();
 	            }
-	            Vivienda vivienda =new Vivienda (ciudad, direccion, numHab, descripcion, precioDia, tipo_Vivienda, dias, semanas);
+	            Vivienda vivienda =new Vivienda (, ciudad, direccion, numHab, descripcion, precioDia, tipo_Vivienda, dias, semanas);
 	            return vivienda;
 	        }
-	            public static void eliminarVivienda() {
-	       		 System.out.println("\n--- Eliminar Vivienda ---");
-	       	       
-	                System.out.print("Introduce el código de la vivienda que deseas eliminar: ");
-	                int codVivienda = sc.nextInt();
 	                 
-	         public static Vivienda MostrarViviendas() {
-	        	 System.out.println("");
-	         }
-	                
+	       
 	 }
-}
+

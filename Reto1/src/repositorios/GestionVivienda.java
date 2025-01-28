@@ -17,11 +17,10 @@ public class GestionVivienda {
 
     public static void insertarVivienda(Vivienda vivienda) {
         
-            String insert = "INSERT INTO vivienda (ciudad, direccion, descripcion, num_hab, precio_dia,Tipo_Vivienda,Dias,Semanas) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String insert = "INSERT INTO vivienda (idOficina, ciudad, direccion, descripcion, num_hab, precio_dia,Tipo_Vivienda,Dias,Semanas) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             
             try ( 
                  PreparedStatement statement = ConectorBD.conexion.prepareStatement(insert)) {
-
                
                 statement.setString(1, vivienda.getCiudad());
                 statement.setString(2, vivienda.getDireccion());
@@ -43,16 +42,18 @@ public class GestionVivienda {
         			System.out.println("Error al hacer la consulta: "+insert);
                 }
         		}
-            public static void mostrarViviendasBD() {
-            	
-                    String Select = "SELECT * FROM mr_robot.vivienda";
+    public static void mostrarViviendasBD() {
+            	System.out.println("Lista de viviendas");
+                   String Select = "SELECT * FROM mr_robot.vivienda";
                 	try {
         				PreparedStatement statement=conexion.prepareStatement(Select);
         				ResultSet rs=statement.executeQuery(Select);
         				
         				while(rs.next()) {
         					System.out.println("Codigo Vivienda: "+rs.getInt("CodVivienda")+
-        							", Id Oficina: "+rs.getInt("IdOficina")+", Ciudad: "+rs.getString("Ciudad)+));
+        							", Ciudad: "+rs.getString("Ciudad")+", Dirección: "+rs.getString("Dirección")
+        							+", Numero Habitantes: "+rs.getInt("NumHab")+", Descripción: "+rs.getString("descripcion")
+        							+", Precio/dia: "+rs.getDouble("precioDia")+", Tipo Vivienda: "+rs.getString("tipoVivienda")+", Dias: "+rs.getInt("dias")+", Semanas: "+rs.getInt("semanas"));
         				}
         			} catch (SQLException e) {
         				
@@ -61,9 +62,6 @@ public class GestionVivienda {
         			}
             }
                     
-                 
-                
-
-    
+  
 }
 

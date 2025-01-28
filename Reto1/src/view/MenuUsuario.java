@@ -18,7 +18,7 @@ public class MenuUsuario {
         System.out.println("3.- Salir");
         System.out.print("Selecciona una opción: ");
         opcion = sc.nextInt();
-        sc.nextLine(); // Limpiar el buffer
+        sc.nextLine(); // Limpia el buffer
 
         switch (opcion) {
             case 1:
