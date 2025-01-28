@@ -7,7 +7,7 @@ public class Menu {
 	public static void main(String[] args) {
 		
 	
-		MenuUsuario.mostrarMenuUsuario(sc);
+		MenuVivienda.mostrarMenuVivienda(sc);
 
 	}
 

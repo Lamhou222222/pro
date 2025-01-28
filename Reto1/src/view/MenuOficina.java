@@ -2,14 +2,44 @@ package view;
 
 import java.util.Scanner;
 
+import clases.Vivienda;
+import repositorios.GestionOficina;
+import repositorios.GestionVivienda;
+
 
 
 public class MenuOficina {
-	 public static void mostrarMenuOficina(Scanner sc) {
+	 public static void mostrarMenuVivienda(Scanner sc) {
 	        boolean salir = false;
 
 	        while (!salir) {
-	            System.out.println("\n--- Menú Oficina ---");
+	            System.out.println("\n--- Menú oficina ---");
+	            System.out.println("1.- Buscar en Oficanas");
+	            System.out.println("2.- Datos de oficina");
+	            System.out.println("3.- Salir");
+	            System.out.print("Selecciona una opción: ");
+
+	            int opcion = sc.nextInt();
+	            sc.nextLine(); // Limpiar el buffer
+
+	            switch (opcion) {
+	                case 1:
+	                	MostrarViviendasOdicina(sc);
+	                        break;
+	    
+	                case 2:
+	                	GestionVivienda.mostrarViviendasBD();
+	                    break;
+	            }
+	        }
+	 }
+	
+	 public static void MostrarViviendasOdicina(Scanner sc) {
+     	System.out.println("Inserta el numero de la oficina :");
+	        boolean salir = false;
+
+	        while (!salir) {
+	            System.out.println("\n--- Menú Oficinas ---");
 	            System.out.println("1.- Oficina Asia");
 	            System.out.println("2.- Oficina America");
 	            System.out.println("3.- Oficina Europa");
@@ -18,7 +48,7 @@ public class MenuOficina {
 
 	            int opcion = sc.nextInt();
 	            sc.nextLine(); // Limpiar el buffer
-
+	            GestionOficina.mostrarOficinaViviendasBD(opcion);
 	            switch (opcion) {
 	                case 1:
 	                
@@ -38,7 +68,10 @@ public class MenuOficina {
 	                default:
 	                    System.out.println("Opción no válida. Intenta de nuevo.");
 	            }
+	           
 	        }
+	        
+	       
 	 }
 
 }

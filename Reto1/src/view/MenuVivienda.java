@@ -2,12 +2,12 @@ package view;
 import java.util.Scanner;
 
 import clases.Vivienda;
-import repositorios.GestionDatos;
+
 import repositorios.GestionVivienda;
 
 public class MenuVivienda {
 	
-	public static Scanner sc=new Scanner(System.in);
+	
 	
 	 public static void mostrarMenuVivienda(Scanner sc) {
 	        boolean salir = false;
@@ -26,7 +26,7 @@ public class MenuVivienda {
 
 	            switch (opcion) {
 	                case 1:
-	                  Vivienda viv=agregarVivienda();
+	                  Vivienda viv=agregarVivienda(sc);
 	                  GestionVivienda.insertarVivienda(viv);
 	                        break;
 	    
@@ -48,7 +48,7 @@ public class MenuVivienda {
 	            }
 	            }
 	        }
-	        public static Vivienda agregarVivienda() {
+	        public static Vivienda agregarVivienda(Scanner sc) {
 	    		System.out.println("\n--- Añadir Vivienda ---");
 	            System.out.print("Ciudad: ");
 	            String ciudad = sc.nextLine();
@@ -72,7 +72,7 @@ public class MenuVivienda {
 	            	System.out.println("Cuantas semanas :");
 	            	 semanas =sc.nextInt();
 	            }
-	            Vivienda vivienda =new Vivienda (, ciudad, direccion, numHab, descripcion, precioDia, tipo_Vivienda, dias, semanas);
+	            Vivienda vivienda =new Vivienda ( ciudad, direccion, numHab, descripcion, precioDia, tipo_Vivienda, dias, semanas);
 	            return vivienda;
 	        }
 	                 
