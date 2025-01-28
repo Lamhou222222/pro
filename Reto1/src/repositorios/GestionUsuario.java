@@ -44,8 +44,10 @@ public class GestionUsuario {
 			while(rs.next()) {
 				if(email.equals("ikdgg@plaiaundi.net") || email.equals("ikdgs@plaiaundi.net")) {
 					MenuVivienda.mostrarMenuVivienda(null);
-				}else { System.out.println("papa");
-					//MenuOficina.mostrarMenuOficina
+
+				}else {
+					MenuOficina.mostrarMenuOficina();
+
 					
 					
 					

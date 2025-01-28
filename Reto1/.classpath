@@ -11,5 +11,9 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
+=======
+	<classpathentry kind="lib" path="C:/Users/1daw3/eclipse-workspace/BBDD/src/mysql-connector-j-9.1.0.jar"/>
+>>>>>>> branch 'master' of https://github.com/JokinBAnza/Reto1GitHub.git
 	<classpathentry kind="output" path="bin"/>
 </classpath>

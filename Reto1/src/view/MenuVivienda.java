@@ -1,8 +1,12 @@
 package view;
+
 import java.util.Scanner;
 
 import clases.Vivienda;
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/JokinBAnza/Reto1GitHub.git
 import repositorios.GestionVivienda;
 
 public class MenuVivienda {
@@ -72,7 +76,9 @@ public class MenuVivienda {
 	            	System.out.println("Cuantas semanas :");
 	            	 semanas =sc.nextInt();
 	            }
-	            Vivienda vivienda =new Vivienda ( ciudad, direccion, numHab, descripcion, precioDia, tipo_Vivienda, dias, semanas);
+
+	            Vivienda vivienda =new Vivienda (ciudad, direccion, numHab, descripcion, precioDia, tipo_Vivienda, dias, semanas);
+
 	            return vivienda;
 	        }
 	                 
