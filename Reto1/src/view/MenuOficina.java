@@ -1,6 +1,6 @@
 package view;
 
-import java.util.Scanner
+import java.util.Scanner;
 
 
 import repositorios.GestionOficina;
@@ -9,7 +9,7 @@ import repositorios.GestionVivienda;
 
 
 public class MenuOficina {
-	 public static void mostrarMenuVivienda() {
+	 public static void mostrarMenuVivienda(Scanner sc) {
 	        boolean salir = false;
 
 	        while (!salir) {
@@ -36,6 +36,7 @@ public class MenuOficina {
 	                    
 	                default:
 	                    System.out.println("Opción no válida. Intenta de nuevo.");
+	                    break;
 	            }
 	        }
 	 }
@@ -65,7 +66,7 @@ public class MenuOficina {
 	                    break;
 	                case 3:
 	                   //modificarVivienda()
-	                 
+	                 break;
 	              
 	                case 4:
 	                    salir = true;
@@ -73,6 +74,7 @@ public class MenuOficina {
 	                    break;
 	                default:
 	                    System.out.println("Opción no válida. Intenta de nuevo.");
+	                    break;
 	            }
 	           
 	        }
