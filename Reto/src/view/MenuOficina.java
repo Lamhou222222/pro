@@ -17,7 +17,7 @@ public class MenuOficina {
 	        while (!salir) {
 	            System.out.println("\n--- Menú oficina ---");
 	            System.out.println("1.- Buscar vivienda por Oficina");
-	            System.out.println("2.- Datos de cada Oficina");
+	            System.out.println("2.- Mostrar oficinas disponibles");
 	            System.out.println("3.- Volver atras.");
 	            System.out.println("4.- Salir");
 	            System.out.println();
@@ -25,11 +25,11 @@ public class MenuOficina {
 	            int opcion;
 	        do {
 	        	opcion = sc.nextInt();
-	            sc.nextLine(); // Limpiar el buffer
+	            sc.nextLine();
 
 	            switch (opcion) {
 	                case 1:
-	                	MostrarViviendasOficina(sc);
+	                	mostrarViviendasOficina(sc);
 	                        break;
 	    
 	                case 2:
@@ -49,7 +49,7 @@ public class MenuOficina {
 	        }
 	 }
 	
-	 public static void MostrarViviendasOficina(Scanner sc) {
+	 public static void mostrarViviendasOficina(Scanner sc) {
    
 	        boolean salir = false;
 
@@ -68,13 +68,16 @@ public class MenuOficina {
 	            switch (opcion) {
 	                case 1:
 	                	GestionOficina.mostrarOficinaViviendasBD(opcion);
+	                	MenuReservas.mostrarMenuReservas(sc);
 	                        break;
 	    
 	                case 2:
 	                	GestionOficina.mostrarOficinaViviendasBD(opcion);
+	                	MenuReservas.mostrarMenuReservas(sc);
 	                    break;
 	                case 3:
 	                	GestionOficina.mostrarOficinaViviendasBD(opcion);
+	                	MenuReservas.mostrarMenuReservas(sc);
 	                 break;
 	                case 4:
 	                	return;

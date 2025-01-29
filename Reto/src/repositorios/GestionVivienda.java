@@ -12,6 +12,7 @@ import clases.Vivienda;
 
 public class GestionVivienda {
 	
+	
     public static void insertarVivienda(Vivienda vivienda) {
         
             String insert = "INSERT INTO vivienda (idOficina, ciudad, direccion, descripcion, numhab, precio_dia, Tipo_Vivienda, Dias, Semanas) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";

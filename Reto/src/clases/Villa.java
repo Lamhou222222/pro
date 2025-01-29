@@ -29,7 +29,7 @@ public class Villa extends Vivienda {
 	//ToString
 	@Override
 	public String toString() {
-		return "Villa [semanas=" + semanas + ", codVivienda=" + codVivienda + ", ciudad=" + ciudad + ", direccion="
+		return "Villa [semanas=" + semanas + ", ciudad=" + ciudad + ", direccion="
 				+ direccion + ", numHab=" + numHab + ", descripcion=" + descripcion + ", precioDia=" + precioDia + "]";
 	}
 

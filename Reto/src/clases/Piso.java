@@ -29,7 +29,7 @@ public class Piso extends Vivienda {
 	//ToString
 	@Override
 	public String toString() {
-		return "Piso [Días: " + dias + ", CodVivienda: " + codVivienda + ", Ciudad: " + ciudad + ", Dirección: " + direccion
+		return "Piso [Días: " + dias + ", Ciudad: " + ciudad + ", Dirección: " + direccion
 				+ ", NumHab: " + numHab + ", Descripción: " + descripcion + ", Precio-Dia: " + precioDia + "]";
 	}
 	

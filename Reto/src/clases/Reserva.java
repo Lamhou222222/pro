@@ -5,8 +5,8 @@ import java.sql.Date;
 public class Reserva {
 	
 	//Atributos
-	private Date fechaEntrada;
-	private Date fechaSalida;
+	private String fechaEntrada;
+	private String fechaSalida;
 	private int numHuespedes;
 	private double totalPagado;
 	
@@ -16,7 +16,7 @@ public class Reserva {
 	}
 
 	//Constructor con atributos
-	public Reserva(Date fechaEntrada, Date fechaSalida, int numHuespedes, double totalPagado) {
+	public Reserva(String fechaEntrada, String fechaSalida, int numHuespedes, double totalPagado) {
 		super();
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = fechaSalida;
@@ -25,19 +25,19 @@ public class Reserva {
 	}
 	
 	//Getters y Setters
-	public Date getFechaEntrada() {
+	public String getFechaEntrada() {
 		return fechaEntrada;
 	}
 
-	public void setFechaEntrada(Date fechaEntrada) {
+	public void setFechaEntrada(String fechaEntrada) {
 		this.fechaEntrada = fechaEntrada;
 	}
 
-	public Date getFechaSalida() {
+	public String getFechaSalida() {
 		return fechaSalida;
 	}
 
-	public void setFechaSalida(Date fechaSalida) {
+	public void setFechaSalida(String fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}
 
