@@ -16,6 +16,7 @@ public class MenuUsuario {
         System.out.println("1.- Crear Usuario");
         System.out.println("2.- Login Usuario");
         System.out.println("3.- Salir");
+        System.out.println();
         System.out.print("Selecciona una opción: ");
         opcion = sc.nextInt();
         sc.nextLine(); // Limpia el buffer
@@ -30,8 +31,12 @@ public class MenuUsuario {
             case 2: 
             	System.out.println("Ingresa tu mail:");
             	String email=sc.nextLine();
+            	String contraseña; 
             	System.out.println("Ingresa tu contraseña(mínimo 8 caracteres):");
-            	String contraseña=sc.nextLine();
+            	contraseña=sc.nextLine();
+            	if(contraseña.length()<8) {
+            		System.out.println("Error. Introduce una contraseña válida.");
+            	}
             	
             	GestionUsuario.loginUsuario(email, contraseña);
                 break;      
@@ -64,8 +69,10 @@ public class MenuUsuario {
 			String nomUs=sc.nextLine();
 			System.out.println("Ingresa tu email:");
 			String email=sc.nextLine();
-			System.out.println("Ingresa tu contraseña:");
+			System.out.println("Ingresa tu contraseña(mínimo 8 caracteres):");
 			String contraseña;
+			System.out.println();
+			System.out.println();
 			do {
 			contraseña=sc.nextLine();
 			if(contraseña.length()<8) {

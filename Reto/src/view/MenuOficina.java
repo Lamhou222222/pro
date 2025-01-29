@@ -9,14 +9,18 @@ import repositorios.GestionVivienda;
 
 
 public class MenuOficina {
-	 public static void menuOficina(Scanner sc) {
-	        boolean salir = false;
+	 
+	public static void menuOficina(Scanner sc) {
+	        
+		boolean salir = false;
 
 	        while (!salir) {
 	            System.out.println("\n--- Menú oficina ---");
-	            System.out.println("1.- Buscar por Oficina");
-	            System.out.println("2.- Datos de Oficina");
-	            System.out.println("3.- Salir");
+	            System.out.println("1.- Buscar vivienda por Oficina");
+	            System.out.println("2.- Datos de cada Oficina");
+	            System.out.println("3.- Volver atras.");
+	            System.out.println("4.- Salir");
+	            System.out.println();
 	            System.out.print("Selecciona una opción: ");
 	            int opcion;
 	        do {
@@ -31,7 +35,9 @@ public class MenuOficina {
 	                case 2:
 	                	GestionOficina.DatosOficina();
 	                    break;
-	                case 3: 
+	                case 3:
+	                	return;
+	                case 4: 
 	                    System.out.println("Saliendo del menú. ¡Hasta luego!");
 	                    break;
 	                    
@@ -44,7 +50,7 @@ public class MenuOficina {
 	 }
 	
 	 public static void MostrarViviendasOficina(Scanner sc) {
-     	System.out.println("Inserta el numero de la oficina :");
+   
 	        boolean salir = false;
 
 	        while (!salir) {
@@ -52,7 +58,8 @@ public class MenuOficina {
 	            System.out.println("1.- Oficina Asia");
 	            System.out.println("2.- Oficina America");
 	            System.out.println("3.- Oficina Europa");
-	            System.out.println("4.- Salir");
+	            System.out.println("4.- Volver atras");
+	            System.out.println("5.- Salir");
 	            System.out.print("Selecciona una opción: ");
 
 	            int opcion = sc.nextInt();
@@ -69,8 +76,10 @@ public class MenuOficina {
 	                case 3:
 	                	GestionOficina.mostrarOficinaViviendasBD(opcion);
 	                 break;
-	              
 	                case 4:
+	                	return;
+	              
+	                case 5:
 	                    salir = true;
 	                    System.out.println("Saliendo del menú. ¡Hasta luego!");
 	                    break;

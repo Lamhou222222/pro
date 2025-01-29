@@ -11,7 +11,9 @@ import view.MenuOficina;
 import view.MenuVivienda;
 
 public class GestionUsuario {
-
+	
+	private final static Scanner sc= new Scanner (System.in);
+	
 	public static void insertarUsuario(Usuario usuario) {
 		String insert="INSERT INTO Usuario (DNI, Nombre, Apellido, NomUs, Email, Contraseña, Rol) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		try {
@@ -34,29 +36,30 @@ public class GestionUsuario {
 			
 	}
 	public static void loginUsuario(String email, String Contraseña) {
-		
-		String consulta= "SELECT Rol FROM usuario WHERE email=? AND Contraseña=?";
-		try {
-			PreparedStatement statement=ConectorBD.conexion.prepareStatement(consulta);
-			statement.setString(1, email);
-			statement.setString(2, Contraseña);
-			ResultSet rs=statement.executeQuery();
-			
-			while(rs.next()) {
-				String rol = rs.getString("Rol");
-				if ("Administrador".equalsIgnoreCase(rol)) {
+	    String consulta = "SELECT Rol FROM usuario WHERE email=? AND Contraseña=?";
+	    try {
+	        PreparedStatement statement = ConectorBD.conexion.prepareStatement(consulta);
+	        statement.setString(1, email);
+	        statement.setString(2, Contraseña);
+	        ResultSet rs = statement.executeQuery();
+
+	        if (!rs.next()) {
+	            System.out.println("Usuario o contraseña incorrectos.");
+	        } else {
+	            String rol = rs.getString("Rol");
+	            if ("Administrador".equalsIgnoreCase(rol)) {
 	                System.out.println("Bienvenido Administrador.");
-	                MenuVivienda.mostrarMenuVivienda(null);
+	                MenuVivienda.mostrarMenuVivienda(sc);
 	            } else if ("Cliente".equalsIgnoreCase(rol)) {
 	                System.out.println("Bienvenido Cliente.");
-	                MenuOficina.menuOficina(null);
+	                MenuOficina.menuOficina(sc);
 	            } else {
-	            System.out.println("Usuario o contraseña incorrectos.");
+	                System.out.println("Usuario o contraseña incorrectos.");
 	            }
-			}
+	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	        System.out.println("Error al realizar el login.");
-	      }
+	    }
 	}
 }

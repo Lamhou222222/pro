@@ -19,9 +19,9 @@ public class GestionOficina {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 System.out.println("Codigo Vivienda: " + rs.getInt("CodVivienda") +
-                        ", Ciudad: " + rs.getString("Ciudad") + ", Dirección: " + rs.getString("Dirección") +
-                        ", Numero Habitantes: " + rs.getInt("NumHab") + ", Descripción: " + rs.getString("descripcion") +
-                        ", Precio/dia: " + rs.getDouble("precioDia") + ", Tipo Vivienda: " + rs.getString("tipoVivienda") +
+                        ", Ciudad: " + rs.getString("Ciudad") + ", Direccion: " + rs.getString("Direccion") +
+                        ", Numero Habitantes: " + rs.getInt("NumHab") + ", Descripcion: " + rs.getString("descripcion") +
+                        ", Precio/dia: " + rs.getDouble("precio_Dia") + ", Tipo Vivienda: " + rs.getString("tipo_Vivienda") +
                         ", Dias: " + rs.getInt("dias") + ", Semanas: " + rs.getInt("semanas"));
             }
         } catch (SQLException e) {
@@ -33,7 +33,7 @@ public class GestionOficina {
     public static void DatosOficina() {
         System.out.println("Lista de viviendas");
 
-        String Select = "SELECT * FROM mr_robot.vivienda";
+        String Select = "SELECT * FROM mr_robot.oficina";
         try {
             PreparedStatement statement = ConectorBD.conexion.prepareStatement(Select);
 

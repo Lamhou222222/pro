@@ -12,23 +12,22 @@ import clases.Vivienda;
 
 public class GestionVivienda {
 	
-    private Scanner scanner = new Scanner(System.in);
-
     public static void insertarVivienda(Vivienda vivienda) {
         
-            String insert = "INSERT INTO vivienda (idOficina, ciudad, direccion, descripcion, num_hab, precio_dia,Tipo_Vivienda,Dias,Semanas) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String insert = "INSERT INTO vivienda (idOficina, ciudad, direccion, descripcion, numhab, precio_dia, Tipo_Vivienda, Dias, Semanas) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
             try ( 
                  PreparedStatement statement = ConectorBD.conexion.prepareStatement(insert)) {
                
-                statement.setString(1, vivienda.getCiudad());
-                statement.setString(2, vivienda.getDireccion());
-                statement.setString(3, vivienda.getDescripcion());
-                statement.setInt(4,vivienda.getNumHab() );
-                statement.setDouble(5,vivienda.getPrecioDia() );
-                statement.setString(6,vivienda.getTipo_Vivienda());
-                statement.setInt(7,vivienda.getDias());
-                statement.setInt(8,vivienda.getSemanas());
+            	statement.setInt(1, vivienda.getIdOficina());
+                statement.setString(2, vivienda.getCiudad());
+                statement.setString(3, vivienda.getDireccion());
+                statement.setString(4, vivienda.getDescripcion());
+                statement.setInt(5,vivienda.getNumHab() );
+                statement.setDouble(6,vivienda.getPrecioDia() );
+                statement.setString(7,vivienda.getTipo_Vivienda());
+                statement.setInt(8,vivienda.getDias());
+                statement.setInt(9,vivienda.getSemanas());
                 
                 int rowsInserted = statement.executeUpdate();
             
@@ -49,19 +48,21 @@ public class GestionVivienda {
         				ResultSet rs=statement.executeQuery(Select);
         				
         				while(rs.next()) {
-        					System.out.println("Codigo Vivienda: "+rs.getInt("CodVivienda")+
-        							", Ciudad: "+rs.getString("Ciudad")+", Dirección: "+rs.getString("Dirección")
+        					System.out.println("Codigo Vivienda: "+rs.getInt("CodVivienda")+", IdOficina: "+rs.getInt("IdOficina")+
+        							", Ciudad: "+rs.getString("Ciudad")+", Direccion: "+rs.getString("Direccion")
         							+", Numero Habitantes: "+rs.getInt("NumHab")+", Descripción: "+rs.getString("descripcion")
-        							+", Precio/dia: "+rs.getDouble("precioDia")+", Tipo Vivienda: "+rs.getString("tipoVivienda")
-        							+", Dias: "+rs.getInt("dias")+", Semanas: "+rs.getInt("semanas"));
-        				}
+        							+", Precio/dia: "+rs.getDouble("Precio_Dia")+", Tipo Vivienda: "+rs.getString("Tipo_Vivienda")
+        							+", Dias: "+rs.getInt("Dias")+", Semanas: "+rs.getInt("Semanas"));
+        				}			
         			} catch (SQLException e) {
         				
         				e.printStackTrace();
         				System.out.println("Error al hacer la consulta: "+Select);
         			}
             }
+    public static void modificarVivienda() {
+    	
+    }
                     
-  
 }
 

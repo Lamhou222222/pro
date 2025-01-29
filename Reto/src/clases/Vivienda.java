@@ -3,7 +3,7 @@ package clases;
 public class Vivienda {
 	
 	//Atributos
-	protected int codVivienda;
+	protected int idOficina;
 	protected String ciudad;
 	protected String direccion;
 	protected int numHab;
@@ -19,9 +19,10 @@ public class Vivienda {
 	}
 
 	//Constructor con atributos
-	public Vivienda(String ciudad, String direccion, int numHab, String descripcion,
+	public Vivienda(int idOficina, String ciudad, String direccion, int numHab, String descripcion,
 			double precioDia, String tipo_Vivienda, int dias, int semanas) {
 		super();
+		this.idOficina=idOficina;
 		this.ciudad = ciudad;
 		this.direccion = direccion;
 		this.numHab = numHab;
@@ -34,6 +35,14 @@ public class Vivienda {
 
 	//Getters y Setters
 
+	public int getIdOficina() {
+		return idOficina;
+	}
+
+	public void setIdOficina(int idOficina) {
+		this.idOficina = idOficina;
+	}
+	
 	public String getCiudad() {
 		return ciudad;
 	}

@@ -17,7 +17,9 @@ public class MenuVivienda {
 	            System.out.println("2.- Mostrar Viviendas");
 	            System.out.println("3.- Modificar Vivienda");
 	            System.out.println("4.- Buscar Vivienda");
-	            System.out.println("5.- Salir");
+	            System.out.println("5.- Volver atras");
+	            System.out.println("6.- Salir");
+	            System.out.println();
 	            System.out.print("Selecciona una opción: ");
 
 	            int opcion = sc.nextInt();
@@ -39,6 +41,8 @@ public class MenuVivienda {
 	                    //  buscarVivienda()
 	                    break;
 	                case 5:
+	                	return;
+	                case 6:
 	                    salir = true;
 	                    System.out.println("Saliendo del menú. ¡Hasta luego!");
 	                    break;
@@ -50,6 +54,9 @@ public class MenuVivienda {
 	        }
 	        public static Vivienda agregarVivienda(Scanner sc) {
 	    		System.out.println("\n--- Añadir Vivienda ---");
+	    		System.out.println("Id Oficina:");
+	    		int idOficina=sc.nextInt();
+	    		sc.nextLine();
 	            System.out.print("Ciudad: ");
 	            String ciudad = sc.nextLine();
 	            System.out.print("Dirección: ");
@@ -61,6 +68,7 @@ public class MenuVivienda {
 	            sc.nextLine();
 	            System.out.print("Precio por día: ");
 	            double precioDia = sc.nextDouble();
+	            sc.nextLine();
 	            System.out.println("TipoVivienda (Villa/Piso):");
 	            String tipo_Vivienda= sc.nextLine();
 	            int dias =0;
@@ -68,18 +76,18 @@ public class MenuVivienda {
 	            do {
 		            if(tipo_Vivienda.equalsIgnoreCase("Villa")) {
 		            	System.out.println("Cuantas semanas :");
-		            	dias =sc.nextInt();
+		            	semanas =sc.nextInt();
 		            }
 		            else if (tipo_Vivienda.equalsIgnoreCase("Piso")){
 		            	System.out.println("Cuantos dias :");
-		            	 semanas =sc.nextInt();
+		            	 dias =sc.nextInt();
 		            
 		            }else {
 		            	System.out.println("Error. Introduce Villa o Piso:");
 		            }
-	            }while(!tipo_Vivienda.equalsIgnoreCase("Villa") || !tipo_Vivienda.equalsIgnoreCase("Piso"));
+	            }while(!tipo_Vivienda.equalsIgnoreCase("Villa") && !tipo_Vivienda.equalsIgnoreCase("Piso"));
 	           
-	            Vivienda vivienda =new Vivienda (ciudad, direccion, numHab, descripcion, precioDia, tipo_Vivienda, dias, semanas);
+	           Vivienda vivienda= new Vivienda(idOficina, ciudad, direccion, numHab, descripcion, precioDia, tipo_Vivienda, dias, semanas);
 
 	            return vivienda;
 	        }
