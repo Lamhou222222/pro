@@ -8,6 +8,7 @@ import java.util.Scanner;
 import clases.Reserva;
 import clases.Vivienda;
 import repositorios.GestionReserva;
+import repositorios.GestionUsuario;
 import repositorios.GestionVivienda;
 
 
@@ -77,11 +78,12 @@ public class MenuReservas {
 	public static Reserva agregarReserva(Scanner sc) {
 		
 		System.out.println("\n--- Añadir Reserva ---");
-		System.out.println("Fecha de Entrada:");
+		sc.nextLine();
+		System.out.println("Fecha de Entrada(yyyy/mm/dd");
 		String fechaE=sc.nextLine();
 		Date fechaEd=MenuReservas.convertirFecha(fechaE);
 		sc.nextLine();
-        System.out.print("Fecha de Salida: ");
+        System.out.print("Fecha de Salida(yyyy/mm/dd): ");
         String fechaS=sc.nextLine();
 		Date fechaSd=MenuReservas.convertirFecha(fechaS);
 
@@ -93,6 +95,7 @@ public class MenuReservas {
         System.out.print("Total pagado: ");
         double totalPagado=0;
         //System.out.println(dias*);
+        String dniUsuario = GestionUsuario.getDniUsuario();
         
         
         Reserva reserva= new Reserva(fechaE, fechaS, huespedes, totalPagado);

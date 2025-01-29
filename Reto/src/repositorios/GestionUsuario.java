@@ -14,6 +14,12 @@ public class GestionUsuario {
 	
 	private final static Scanner sc= new Scanner (System.in);
 	
+	private static String dniUsuario; // Aquí guardas el DNI del usuario logueado
+
+    public static String getDniUsuario() {
+        return dniUsuario;  // Devuelves el DNI cuando se necesite
+    }
+	
 	public static void insertarUsuario(Usuario usuario) {
 		String insert="INSERT INTO Usuario (DNI, Nombre, Apellido, NomUs, Email, Contraseña, Rol) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		try {
@@ -36,7 +42,7 @@ public class GestionUsuario {
 			
 	}
 	public static void loginUsuario(String email, String Contraseña) {
-	    String consulta = "SELECT Rol FROM usuario WHERE email=? AND Contraseña=?";
+	    String consulta = "SELECT * FROM usuario WHERE email=? AND Contraseña=?";
 	    try {
 	        PreparedStatement statement = ConectorBD.conexion.prepareStatement(consulta);
 	        statement.setString(1, email);
@@ -47,6 +53,7 @@ public class GestionUsuario {
 	            System.out.println("Usuario o contraseña incorrectos.");
 	        } else {
 	            String rol = rs.getString("Rol");
+	            dniUsuario = rs.getString("DNI");
 	            if ("Administrador".equalsIgnoreCase(rol)) {
 	                System.out.println("Bienvenido Administrador.");
 	                MenuVivienda.mostrarMenuVivienda(sc);
@@ -62,4 +69,5 @@ public class GestionUsuario {
 	        System.out.println("Error al realizar el login.");
 	    }
 	}
+
 }
