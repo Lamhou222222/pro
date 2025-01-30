@@ -12,7 +12,6 @@ public class MenuVivienda {
 	 public static void mostrarMenuVivienda(Scanner sc) {
 	        boolean salir = false;
 	        
-	        ArrayList <Vivienda> vivienda= new ArrayList<>();
 	        
 	        while (!salir) {
 	            System.out.println("\n--- Menú Vivienda ---");
@@ -70,31 +69,30 @@ public class MenuVivienda {
 	            double precioDia = sc.nextDouble();
 	            sc.nextLine();
 	            String tipo_Vivienda;
-	            int dias;
-	            int semanas;
+	            int planta;
+	            boolean piscina;
 	            do {
 	            System.out.println("TipoVivienda (Villa/Piso):");
 	            tipo_Vivienda= sc.nextLine();
-	            dias =0;
-	            semanas =0; 
+	           
 		            if(tipo_Vivienda.equalsIgnoreCase("Villa")) {
-		            	System.out.println("Cuantas semanas :");
-		            	semanas =sc.nextInt();
+		            	System.out.println("¿Tiene piscina? :");
+		            	piscina =sc.nextBoolean();
 		            }
 		            else if (tipo_Vivienda.equalsIgnoreCase("Piso")){
-		            	System.out.println("Cuantos dias :");
-		            	 dias =sc.nextInt();
+		            	System.out.println("¿Que planta es? :");
+		            	 planta =sc.nextInt();
 		            
 		            }else {
 		            	System.out.println("Error. Introduce Villa o Piso:");
 		            }
 	            }while(!tipo_Vivienda.equalsIgnoreCase("Villa") && !tipo_Vivienda.equalsIgnoreCase("Piso"));
 	           
-	           Vivienda vivienda= new Vivienda(idOficina, ciudad, direccion, numHab, descripcion, precioDia, tipo_Vivienda, dias, semanas);
+	           Vivienda vivienda= new Vivienda(idOficina, ciudad, direccion, descripcion, numHab, precioDia, tipo_Vivienda, planta, piscina);
 
 	            return vivienda;
 	        }
-	        private static void modificarVivienda(ArrayList<Vivienda> vivienda, Scanner sc) {
+	        private static void modificarVivienda(Scanner sc) {
 	    	    System.out.println("Introduce el Codigo de la vivienda a actualizar:");
 	    	    int codV = sc.nextInt();
 	    	    Vivienda viv = new Vivienda();

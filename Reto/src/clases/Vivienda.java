@@ -5,14 +5,15 @@ public class Vivienda {
 	//Atributos
 	protected int codViv;
 	protected int idOficina;
+	protected boolean disponible;
 	protected String ciudad;
 	protected String direccion;
 	protected int numHab;
 	protected String descripcion;
 	protected double precioDia;
 	protected String tipo_Vivienda;
-	protected int dias;
-	protected int semanas;
+	protected String planta;
+	protected boolean piscina;
 	
 	//Constructor vacío
 	public Vivienda() {
@@ -20,18 +21,19 @@ public class Vivienda {
 	}
 
 	//Constructor con atributos
-	public Vivienda(int idOficina, String ciudad, String direccion, int numHab, String descripcion,
-			double precioDia, String tipo_Vivienda, int dias, int semanas) {
+	public Vivienda(int idOficina, String ciudad, boolean disponible, String direccion, int numHab, String descripcion,
+			double precioDia, String tipo_Vivienda, String planta, boolean piscina) {
 		super();
 		this.idOficina=idOficina;
 		this.ciudad = ciudad;
+		this.disponible=disponible;
 		this.direccion = direccion;
 		this.numHab = numHab;
 		this.descripcion = descripcion;
 		this.precioDia = precioDia;
 		this.tipo_Vivienda=tipo_Vivienda;
-		this.dias=dias;
-		this.semanas=semanas;
+		this.planta=planta;
+		this.piscina=piscina;
 	}
 
 	//Getters y Setters
@@ -53,6 +55,14 @@ public class Vivienda {
 		this.idOficina = idOficina;
 	}
 	
+	public boolean isDisponible() {
+		return disponible;
+	}
+
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
+	}
+
 	public String getCiudad() {
 		return ciudad;
 	}
@@ -101,23 +111,20 @@ public class Vivienda {
 		this.tipo_Vivienda = tipo_Vivienda;
 	}
 
-	public int getDias() {
-		return dias;
+	public String getPlanta() {
+		return planta;
 	}
 
-	public void setDias(int dias) {
-		this.dias = dias;
+	public void setPlanta(String planta) {
+		this.planta = planta;
 	}
 
-	public int getSemanas() {
-		return semanas;
+	public boolean isPiscina() {
+		return piscina;
 	}
 
-	public void setSemanas(int semanas) {
-		this.semanas = semanas;
+	public void setPiscina(boolean piscina) {
+		this.piscina = piscina;
 	}
-	
-	//ToString
-
 	
 }

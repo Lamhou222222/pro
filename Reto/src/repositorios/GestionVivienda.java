@@ -17,20 +17,21 @@ public class GestionVivienda {
 	
     public static void insertarVivienda(Vivienda vivienda) {
         
-            String insert = "INSERT INTO vivienda (idOficina, ciudad, direccion, descripcion, numhab, precio_dia, Tipo_Vivienda, Dias, Semanas) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String insert = "INSERT INTO vivienda (idOficina, ciudad, disponible, direccion, descripcion, numhab, precio_dia, Tipo_Vivienda, planta, piscina) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
             try ( 
                  PreparedStatement statement = ConectorBD.conexion.prepareStatement(insert)) {
                
             	statement.setInt(1, vivienda.getIdOficina());
                 statement.setString(2, vivienda.getCiudad());
-                statement.setString(3, vivienda.getDireccion());
-                statement.setString(4, vivienda.getDescripcion());
-                statement.setInt(5,vivienda.getNumHab() );
-                statement.setDouble(6,vivienda.getPrecioDia() );
-                statement.setString(7,vivienda.getTipo_Vivienda());
-                statement.setInt(8,vivienda.getDias());
-                statement.setInt(9,vivienda.getSemanas());
+                statement.setBoolean(3, vivienda.isDisponible());
+                statement.setString(4, vivienda.getDireccion());
+                statement.setString(5, vivienda.getDescripcion());
+                statement.setInt(6,vivienda.getNumHab() );
+                statement.setDouble(7,vivienda.getPrecioDia() );
+                statement.setString(8,vivienda.getTipo_Vivienda());
+                statement.setString(9,vivienda.getPlanta());
+                statement.setBoolean(10,vivienda.isPiscina());
                 
                 int rowsInserted = statement.executeUpdate();
             
