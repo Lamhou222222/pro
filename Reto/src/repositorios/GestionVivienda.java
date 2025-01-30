@@ -2,12 +2,14 @@ package repositorios;
 
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
+
 
 import clases.Vivienda;
+
 
 
 public class GestionVivienda {
@@ -61,9 +63,6 @@ public class GestionVivienda {
         				System.out.println("Error al hacer la consulta: "+Select);
         			}
             }
-    public static void modificarVivienda() {
-    	
-    }
                     
 }
 

@@ -11,16 +11,17 @@ public class GestionReserva {
 	
 	public static void insertarReserva(Reserva reserva) {
         
-        String insert = "INSERT INTO reserva (DniUsario, FechaEntrada, FechaSalida, NumHuespedes, TotalPagado) VALUES (?, ?, ?, ?, ?)";
+        String insert = "INSERT INTO reserva (DniUsuario, CodVivienda, FechaEntrada, FechaSalida, NumHuespedes, TotalPagado) VALUES (?, ?, ?, ?, ?,?)";
         
         try ( 
              PreparedStatement statement = ConectorBD.conexion.prepareStatement(insert)) {
            
-        	statement.setString(1, GestionUsuario.getDniUsuario());
-            statement.setString(2, reserva.getFechaEntrada());
-            statement.setString(3, reserva.getFechaSalida());
-            statement.setInt(4, reserva.getNumHuespedes());
-            statement.setDouble(5, reserva.getTotalPagado());
+        	statement.setString(1, reserva.getDniUsuario());
+        	statement.setInt(2, reserva.getCodVivienda());
+            statement.setDate(3, reserva.getFechaEntrada());
+            statement.setDate(4, reserva.getFechaSalida());
+            statement.setInt(5, reserva.getNumHuespedes());
+            statement.setDouble(6, reserva.getTotalPagado());
             
             int rowsInserted = statement.executeUpdate();
         

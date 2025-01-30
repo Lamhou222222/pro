@@ -3,6 +3,7 @@ package clases;
 public class Vivienda {
 	
 	//Atributos
+	protected int codViv;
 	protected int idOficina;
 	protected String ciudad;
 	protected String direccion;
@@ -34,10 +35,19 @@ public class Vivienda {
 	}
 
 	//Getters y Setters
+	
+	public int getCodViv() {
+		return codViv;
+	}
+
+	public void setCodViv(int codViv) {
+		this.codViv = codViv;
+	}
 
 	public int getIdOficina() {
 		return idOficina;
 	}
+
 
 	public void setIdOficina(int idOficina) {
 		this.idOficina = idOficina;

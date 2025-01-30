@@ -5,8 +5,10 @@ import java.sql.Date;
 public class Reserva {
 	
 	//Atributos
-	private String fechaEntrada;
-	private String fechaSalida;
+	private String dniUsuario;
+	private int codVivienda;
+	private Date fechaEntrada;
+	private Date fechaSalida;
 	private int numHuespedes;
 	private double totalPagado;
 	
@@ -16,8 +18,10 @@ public class Reserva {
 	}
 
 	//Constructor con atributos
-	public Reserva(String fechaEntrada, String fechaSalida, int numHuespedes, double totalPagado) {
+	public Reserva(String dniUsuario, int codVivienda, Date fechaEntrada, Date fechaSalida, int numHuespedes, double totalPagado) {
 		super();
+		this.dniUsuario= dniUsuario;
+		this.codVivienda= codVivienda;
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = fechaSalida;
 		this.numHuespedes = numHuespedes;
@@ -25,19 +29,36 @@ public class Reserva {
 	}
 	
 	//Getters y Setters
-	public String getFechaEntrada() {
+	
+	public String getDniUsuario() {
+		return dniUsuario;
+	}
+
+	public void setDniUsuario(String dniUsuario) {
+		this.dniUsuario = dniUsuario;
+	}
+	
+	public int getCodVivienda() {
+		return codVivienda;
+	}
+
+	public void setCodVivienda(int codVivienda) {
+		this.codVivienda = codVivienda;
+	}
+
+	public Date getFechaEntrada() {
 		return fechaEntrada;
 	}
 
-	public void setFechaEntrada(String fechaEntrada) {
+	public void setFechaEntrada(Date fechaEntrada) {
 		this.fechaEntrada = fechaEntrada;
 	}
 
-	public String getFechaSalida() {
+	public Date getFechaSalida() {
 		return fechaSalida;
 	}
 
-	public void setFechaSalida(String fechaSalida) {
+	public void setFechaSalida(Date fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}
 
