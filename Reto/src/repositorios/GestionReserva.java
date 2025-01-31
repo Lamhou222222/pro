@@ -10,7 +10,7 @@ public class GestionReserva {
 	
 	public static void insertarReserva(Reserva reserva) {
         
-        String insert = "INSERT INTO reserva (DniUsuario, CodVivienda, FechaEntrada, FechaSalida, NumHuespedes, TotalPagado) VALUES (?, ?, ?, ?, ?,?)";
+        String insert = "INSERT INTO reserva (DniUsuario, CodVivienda, FechaEntrada, FechaSalida, NumHuespedes, TotalPagado) VALUES (?, ?, ?, ?, ?, ?)";
         
         try ( 
              PreparedStatement statement = ConectorBD.conexion.prepareStatement(insert)) {
@@ -23,6 +23,14 @@ public class GestionReserva {
             statement.setDouble(6, reserva.getTotalPagado());
             
             int rowsInserted = statement.executeUpdate();
+            
+            String updateVivienda = "UPDATE vivienda SET disponible = 'No' WHERE CodVivienda = ?";
+        
+            PreparedStatement statementUpdate = ConectorBD.conexion.prepareStatement(updateVivienda);
+            statementUpdate.setInt(1, reserva.getCodVivienda());
+
+            statementUpdate.executeUpdate();
+
         
             if (rowsInserted > 0) {
                 System.out.println("¡Vivienda añadida con éxito!");
@@ -35,19 +43,17 @@ public class GestionReserva {
     }
 	public static void mostrarReservas() {
     	System.out.println("Lista de viviendas");
-           String Select = "SELECT * FROM mr_robot.reserva WHERE dniUsuario=?";
+           String Select = "SELECT * FROM mr_robot.reserva WHERE dniUsuario= ?";
           
         	try {
 				PreparedStatement statement=ConectorBD.conexion.prepareStatement(Select);
 				statement.setString(1, GestionUsuario.getDniUsuario());
-				ResultSet rs=statement.executeQuery(Select);
+				ResultSet rs=statement.executeQuery();
 				
 				while(rs.next()) {
-					System.out.println("Codigo Vivienda: "+rs.getInt("CodVivienda")+", IdOficina: "+rs.getInt("IdOficina")+
-							", Ciudad: "+rs.getString("Ciudad")+", Direccion: "+rs.getString("Direccion")
-							+", Numero Habitantes: "+rs.getInt("NumHab")+", Descripción: "+rs.getString("descripcion")
-							+", Precio/dia: "+rs.getDouble("Precio_Dia")+", Tipo Vivienda: "+rs.getString("Tipo_Vivienda")
-							+", Planta: "+rs.getString("Planta")+", Piscina: "+rs.getString("Piscina"));
+					System.out.println("Codigo reserva: "+rs.getInt("CodReserva")+", DNI: "+rs.getString("DniUsuario")+", CodVivienda: "+rs.getInt("CodVivienda")+
+							", Fecha Entrada: "+rs.getString("FechaEntrada")+", Fecha Salida: "+rs.getString("FechaSalida")
+							+", Numero de Huespedes: "+rs.getInt("NumHuespedes")+", Total a pagar: "+rs.getDouble("TotalPagado"));
 				}			
 			} catch (SQLException e) {
 				
@@ -55,5 +61,24 @@ public class GestionReserva {
 				System.out.println("Error al hacer la consulta: "+Select);
 			}
     }
+	public static double obtenerPrecioDiaVivienda(int codVivienda) {
+	    String query = "SELECT precio_Dia FROM vivienda WHERE CodVivienda = ?";
+	    double precioDia = 0.0;
+	    
+	    try {
+	        PreparedStatement statement = ConectorBD.conexion.prepareStatement(query);
+	        statement.setInt(1, codVivienda);
+	        ResultSet rs = statement.executeQuery();
+	        
+	        if (rs.next()) {
+	            precioDia = rs.getDouble("precio_Dia");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        System.out.println("Error al obtener el precio de la vivienda.");
+	    }
+
+	    return precioDia;
+	}
 
 }

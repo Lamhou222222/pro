@@ -77,7 +77,7 @@ public class MenuReservas {
 	public static Reserva agregarReserva(Scanner sc) {
 	    System.out.println("\n--- Añadir Reserva ---");
 	    System.out.println("Código de la vivienda:");
-	    int codV = sc.nextInt();
+	    int codVivienda = sc.nextInt();
 	    sc.nextLine();
 
 	    System.out.println("Fecha de Entrada(yyyy/mm/dd):");
@@ -88,21 +88,26 @@ public class MenuReservas {
 	    String fechaS = sc.nextLine();
 	    Date fechaSd = MenuReservas.convertirFecha(fechaS);
 
-	    long ms = fechaEd.getTime() - fechaSd.getTime();
+	    long ms = fechaSd.getTime() - fechaEd.getTime();
 	    long dias = ms / (1000 * 60 * 60 * 24);
 
 	    System.out.print("Número de huéspedes: ");
 	    int huespedes = sc.nextInt();
 
-	    System.out.print("Total pagado: ");
-	    double totalPagado = sc.nextDouble();
+	    double precioDia = GestionReserva.obtenerPrecioDiaVivienda(codVivienda);
+
+	    double totalPagado = totalPagar(dias, precioDia);
 
 	    String dniUsuario = GestionUsuario.getDniUsuario();
-
-	    Reserva reserva = new Reserva(dniUsuario, codV, fechaEd, fechaSd, huespedes, totalPagado);
+	    
+	    Reserva reserva = new Reserva(dniUsuario, codVivienda, fechaEd, fechaSd, huespedes, totalPagado);
 	    
 	    return reserva;
 	}
+	public static Double totalPagar(long dias, double precioDia) {
+		return dias*precioDia;
+	}
+	
 	
 	 }
 
