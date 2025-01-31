@@ -53,8 +53,8 @@ public class GestionVivienda {
         				ResultSet rs=statement.executeQuery(Select);
         				
         				while(rs.next()) {
-        					System.out.println("Codigo Vivienda: "+rs.getInt("CodVivienda")+", IdOficina: "+rs.getInt("IdOficina")+
-        							", Ciudad: "+rs.getString("Ciudad")+", Direccion: "+rs.getString("Direccion")
+        					System.out.println("Codigo Vivienda: "+rs.getInt("CodVivienda")+", IdOficina: "+rs.getInt("IdOficina")
+        					+", Disponible: "+rs.getString("Disponible")+", Ciudad: "+rs.getString("Ciudad")+", Direccion: "+rs.getString("Direccion")
         							+", Numero Habitantes: "+rs.getInt("NumHab")+", Descripción: "+rs.getString("descripcion")
         							+", Precio/dia: "+rs.getDouble("Precio_Dia")+", Tipo Vivienda: "+rs.getString("Tipo_Vivienda")
         							+", Planta: "+rs.getString("Planta")+", Piscina: "+rs.getString("Piscina"));

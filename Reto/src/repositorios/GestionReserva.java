@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import clases.Reserva;
-import clases.Vivienda;
 
 public class GestionReserva {
 	
@@ -36,9 +35,11 @@ public class GestionReserva {
     }
 	public static void mostrarReservas() {
     	System.out.println("Lista de viviendas");
-           String Select = "SELECT * FROM mr_robot.reserva WHERE";
+           String Select = "SELECT * FROM mr_robot.reserva WHERE dniUsuario=?";
+          
         	try {
 				PreparedStatement statement=ConectorBD.conexion.prepareStatement(Select);
+				statement.setString(1, GestionUsuario.getDniUsuario());
 				ResultSet rs=statement.executeQuery(Select);
 				
 				while(rs.next()) {

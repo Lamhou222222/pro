@@ -38,17 +38,16 @@ public class MenuReservas {
 	                    break;
 
 	            case 2:
-	            	GestionVivienda.mostrarViviendasBD();
+	            	GestionReserva.mostrarReservas();
 	                break;
 	            case 3:
 	               //modificarVivienda()
 	             
 	            case 4:
-	                //  buscarVivienda()
-	                break;
+	            	
+	                return;
+
 	            case 5:
-	            	return;
-	            case 6:
 	                salir = true;
 	                System.out.println("Saliendo del menú. ¡Hasta luego!");
 	                break;

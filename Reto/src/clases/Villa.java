@@ -3,7 +3,7 @@ package clases;
 public class Villa extends Vivienda {
 	
 	//Atributos
-	private int semanas;
+	private String piscina;
 	
 	//Constructor vacío
 	public Villa() {
@@ -12,24 +12,24 @@ public class Villa extends Vivienda {
 
 	//Constructor con atributos
 	public Villa(int codVivienda, String ciudad, String direccion, int numHab, String descripcion, double precioDia,
-			int semanas) {
+			String piscina) {
 		super();
-		this.semanas = semanas;
+		this.piscina = piscina;
 	}
 	
 	//Getters y Setters
-	public int getSemanas() {
-		return semanas;
+	public String getSemanas() {
+		return piscina;
 	}
 
-	public void setSemanas(int semanas) {
-		this.semanas = semanas;
+	public void setSemanas(String piscina) {
+		this.piscina = piscina;
 	}
 
 	//ToString
 	@Override
 	public String toString() {
-		return "Villa [semanas=" + semanas + ", ciudad=" + ciudad + ", direccion="
+		return "Villa [piscina=" + piscina + ", ciudad=" + ciudad + ", direccion="
 				+ direccion + ", numHab=" + numHab + ", descripcion=" + descripcion + ", precioDia=" + precioDia + "]";
 	}
 
