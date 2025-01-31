@@ -76,33 +76,33 @@ public class MenuReservas {
         return fechaSql;
     }
 	public static Reserva agregarReserva(Scanner sc) {
-		
-		System.out.println("\n--- Añadir Reserva ---");
-		System.out.println("Código de la vivienda:");
-		int codV=sc.nextInt();
-		sc.nextLine();
-		System.out.println("Fecha de Entrada(yyyy/mm/dd");
-		String fechaE=sc.nextLine();
-		Date fechaEd=MenuReservas.convertirFecha(fechaE);
-		sc.nextLine();
-        System.out.print("Fecha de Salida(yyyy/mm/dd): ");
-        String fechaS=sc.nextLine();
-		Date fechaSd=MenuReservas.convertirFecha(fechaS);
+	    System.out.println("\n--- Añadir Reserva ---");
+	    System.out.println("Código de la vivienda:");
+	    int codV = sc.nextInt();
+	    sc.nextLine();
 
-		long ms= fechaEd.getTime()-fechaSd.getTime();
-		long dias= ms/(1000*60*60*24);
-        System.out.print("Número de huespedes: ");
-        int huespedes = sc.nextInt();
-        
-        System.out.print("Total pagado: ");
-        double totalPagado=1;
-        //System.out.println(dias*);
-        String dniUsuario = GestionUsuario.getDniUsuario();
-        
-        
-       Reserva reserva= new Reserva(dniUsuario, codV, fechaEd, fechaSd, huespedes, totalPagado);
-		return reserva;
-		
+	    System.out.println("Fecha de Entrada(yyyy/mm/dd):");
+	    String fechaE = sc.nextLine();
+	    Date fechaEd = MenuReservas.convertirFecha(fechaE);
+
+	    System.out.print("Fecha de Salida(yyyy/mm/dd): ");
+	    String fechaS = sc.nextLine();
+	    Date fechaSd = MenuReservas.convertirFecha(fechaS);
+
+	    long ms = fechaEd.getTime() - fechaSd.getTime();
+	    long dias = ms / (1000 * 60 * 60 * 24);
+
+	    System.out.print("Número de huéspedes: ");
+	    int huespedes = sc.nextInt();
+
+	    System.out.print("Total pagado: ");
+	    double totalPagado = sc.nextDouble();
+
+	    String dniUsuario = GestionUsuario.getDniUsuario();
+
+	    Reserva reserva = new Reserva(dniUsuario, codV, fechaEd, fechaSd, huespedes, totalPagado);
+	    
+	    return reserva;
 	}
 	
 	 }

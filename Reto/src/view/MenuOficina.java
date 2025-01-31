@@ -63,7 +63,7 @@ public class MenuOficina {
 	            System.out.print("Selecciona una opción: ");
 
 	            int opcion = sc.nextInt();
-	            sc.nextLine(); // Limpiar el buffer
+	            sc.nextLine();
 	            
 	            switch (opcion) {
 	                case 1:
