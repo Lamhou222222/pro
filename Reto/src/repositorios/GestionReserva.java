@@ -46,7 +46,7 @@ public class GestionReserva {
 							", Ciudad: "+rs.getString("Ciudad")+", Direccion: "+rs.getString("Direccion")
 							+", Numero Habitantes: "+rs.getInt("NumHab")+", Descripción: "+rs.getString("descripcion")
 							+", Precio/dia: "+rs.getDouble("Precio_Dia")+", Tipo Vivienda: "+rs.getString("Tipo_Vivienda")
-							+", Dias: "+rs.getInt("Dias")+", Semanas: "+rs.getInt("Semanas"));
+							+", Planta: "+rs.getString("Planta")+", Piscina: "+rs.getString("Piscina"));
 				}			
 			} catch (SQLException e) {
 				

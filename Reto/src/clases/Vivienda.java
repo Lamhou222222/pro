@@ -5,7 +5,7 @@ public class Vivienda {
 	//Atributos
 	protected int codViv;
 	protected int idOficina;
-	protected boolean disponible;
+	protected String disponible;
 	protected String ciudad;
 	protected String direccion;
 	protected int numHab;
@@ -13,7 +13,7 @@ public class Vivienda {
 	protected double precioDia;
 	protected String tipo_Vivienda;
 	protected String planta;
-	protected boolean piscina;
+	protected String piscina;
 	
 	//Constructor vacío
 	public Vivienda() {
@@ -21,12 +21,12 @@ public class Vivienda {
 	}
 
 	//Constructor con atributos
-	public Vivienda(int idOficina, String ciudad, boolean disponible, String direccion, int numHab, String descripcion,
-			double precioDia, String tipo_Vivienda, String planta, boolean piscina) {
+	public Vivienda(int idOficina, String disponible, String ciudad, String direccion, int numHab, String descripcion,
+			double precioDia, String tipo_Vivienda, String planta, String piscina) {
 		super();
 		this.idOficina=idOficina;
-		this.ciudad = ciudad;
 		this.disponible=disponible;
+		this.ciudad = ciudad;	
 		this.direccion = direccion;
 		this.numHab = numHab;
 		this.descripcion = descripcion;
@@ -55,11 +55,11 @@ public class Vivienda {
 		this.idOficina = idOficina;
 	}
 	
-	public boolean isDisponible() {
+	public String getDisponible() {
 		return disponible;
 	}
 
-	public void setDisponible(boolean disponible) {
+	public void setDisponible(String disponible) {
 		this.disponible = disponible;
 	}
 
@@ -118,12 +118,13 @@ public class Vivienda {
 	public void setPlanta(String planta) {
 		this.planta = planta;
 	}
+	
 
-	public boolean isPiscina() {
+	public String isPiscina() {
 		return piscina;
 	}
 
-	public void setPiscina(boolean piscina) {
+	public void setPiscina(String piscina) {
 		this.piscina = piscina;
 	}
 	

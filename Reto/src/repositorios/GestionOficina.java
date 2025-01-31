@@ -22,7 +22,7 @@ public class GestionOficina {
                         ", Ciudad: " + rs.getString("Ciudad") + ", Direccion: " + rs.getString("Direccion") +
                         ", Numero Habitantes: " + rs.getInt("NumHab") + ", Descripcion: " + rs.getString("descripcion") +
                         ", Precio/dia: " + rs.getDouble("precio_Dia") + ", Tipo Vivienda: " + rs.getString("tipo_Vivienda") +
-                        ", Dias: " + rs.getInt("dias") + ", Semanas: " + rs.getInt("semanas"));
+                        ", Planta: " + rs.getString("Planta") + ", Piscina: " + rs.getString("Piscina"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

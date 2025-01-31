@@ -1,8 +1,4 @@
 package view;
-
-
-
-import java.util.ArrayList;
 import java.util.Scanner;
 import clases.Vivienda;
 import repositorios.GestionVivienda;
@@ -29,7 +25,6 @@ public class MenuVivienda {
 	            switch (opcion) {
 	                case 1:
 	                  Vivienda viv=agregarVivienda(sc);
-	                  vivienda.add(viv);
 	                  GestionVivienda.insertarVivienda(viv);
 	                        break;
 	    
@@ -37,7 +32,9 @@ public class MenuVivienda {
 	                	GestionVivienda.mostrarViviendasBD();
 	                    break;
 	                case 3:
-	                   modificarVivienda(vivienda, sc);
+	                	 Vivienda viviendaModificada = modificarVivienda(sc);
+	                   GestionVivienda.modificarViviendaBD(viviendaModificada);
+	                   break;
 	                 
 	                case 4:
 	                	return;
@@ -56,87 +53,71 @@ public class MenuVivienda {
 	    		System.out.println("Id Oficina:");
 	    		int idOficina=sc.nextInt();
 	    		sc.nextLine();
+	    	    String disponible = "Si";
 	            System.out.print("Ciudad: ");
 	            String ciudad = sc.nextLine();
 	            System.out.print("Dirección: ");
 	            String direccion = sc.nextLine();
-	            System.out.print("Descripción: ");
-	            String descripcion = sc.nextLine();
 	            System.out.print("Número de habitaciones: ");
 	            int numHab = sc.nextInt();
+	            System.out.print("Descripción: ");
+	            String descripcion = sc.nextLine(); 
 	            sc.nextLine();
 	            System.out.print("Precio por día: ");
 	            double precioDia = sc.nextDouble();
 	            sc.nextLine();
 	            String tipo_Vivienda;
-	            int planta;
-	            boolean piscina;
+	            String planta = null;
+	            String piscina = "No";
 	            do {
 	            System.out.println("TipoVivienda (Villa/Piso):");
 	            tipo_Vivienda= sc.nextLine();
 	           
 		            if(tipo_Vivienda.equalsIgnoreCase("Villa")) {
-		            	System.out.println("¿Tiene piscina? :");
-		            	piscina =sc.nextBoolean();
-		            }
-		            else if (tipo_Vivienda.equalsIgnoreCase("Piso")){
-		            	System.out.println("¿Que planta es? :");
-		            	 planta =sc.nextInt();
+		            	do {
+		            	System.out.println("¿Tiene piscina? (Si/No):");
+		            	piscina=sc.nextLine();
+		            	}while(!piscina.equalsIgnoreCase("Si")||!piscina.equalsIgnoreCase("No"));
+		            		  
+		            }else if (tipo_Vivienda.equalsIgnoreCase("Piso")){
+		            	System.out.println("¿Que planta es?(Numero y letra) :");
+		            	 planta =sc.nextLine();
 		            
 		            }else {
 		            	System.out.println("Error. Introduce Villa o Piso:");
 		            }
 	            }while(!tipo_Vivienda.equalsIgnoreCase("Villa") && !tipo_Vivienda.equalsIgnoreCase("Piso"));
-	           
-	           Vivienda vivienda= new Vivienda(idOficina, ciudad, direccion, descripcion, numHab, precioDia, tipo_Vivienda, planta, piscina);
-
+	            Vivienda vivienda=new Vivienda(idOficina, disponible, ciudad, direccion, numHab, descripcion, precioDia, tipo_Vivienda, planta, piscina);
 	            return vivienda;
 	        }
-	        private static void modificarVivienda(Scanner sc) {
-	    	    System.out.println("Introduce el Codigo de la vivienda a actualizar:");
-	    	    int codV = sc.nextInt();
-	    	    Vivienda viv = new Vivienda();
-	    	    viv.setCodViv(codV);
-	    	    
-	    	    if (vivienda.contains(viv)) {
-	    	    	System.out.println("Introduce la nueva oficina:");
-	    	    	int idOf=sc.nextInt();
-	    	    	viv.setIdOficina(idOf);
-	    	        System.out.println("Introduce la nueva ciudad:");
-	    	        String ciudad = sc.nextLine();
-	    	        viv.setCiudad(ciudad);
-	    	        System.out.println("Introduce la nueva dirección:");
-	    	        String direc = sc.nextLine();
-	    	        viv.setDireccion(direc);
-	    	        System.out.println("Introduce el nuevo número de habitaciones:");
-	    	        int numH = sc.nextInt();
-	    	        viv.setNumHab(numH);
-	    	        sc.nextLine();
-	    	        System.out.println("Cambia la descripción de la vivienda:");
-	    	        String desc=sc.nextLine();
-	    	        viv.setDescripcion(desc);
-	    	        System.out.println("Introduce el nuevo precio por dia:");
-	    	        double precioD=sc.nextDouble();
-	    	        viv.setPrecioDia(precioD);
-	    	        System.out.println("¿Que tipo de vivienda es? (Villa/Piso):");
-	    	        String tipoV=sc.nextLine();
-	    	        viv.setTipo_Vivienda(tipoV);
-	    	        System.out.println("Estancia en dias (Si es piso):");
-	    	        int dias=sc.nextInt();
-	    	        viv.setDias(dias);
-	    	        System.out.println("Estancia en semanas (Si es villa):");
-	    	        int semanas=sc.nextInt();
-	    	        viv.setSemanas(semanas);
-	    	        int index = vivienda.indexOf(viv);
-	    	        vivienda.set(index, viv);
-	    	        
-	    	        
-	    	        System.out.println("Vivienda actualizada.");
-	    	    } else {
-	    	        System.out.println("La vivienda no se encuentra en la lista.");
-	    	    }
-	    	}
-	                 
+	        private static Vivienda modificarVivienda(Scanner sc) {
+	           
+	            System.out.println("Introduce el Codigo de la vivienda a actualizar:");
+	            int codV = sc.nextInt();
+	            sc.nextLine();
+
+	            Vivienda vivi = new Vivienda();
+	            vivi.setCodViv(codV);
+
+	            String disponible;
+	            do {
+	                System.out.println("¿Disponible para alquilar?");
+	                disponible = sc.nextLine();
+	            } while (!disponible.equalsIgnoreCase("Si") && !disponible.equalsIgnoreCase("No"));
+	            vivi.setDisponible(disponible);
+
+	            System.out.println("Cambia la descripción de la vivienda:");
+	            String desc = sc.nextLine();
+	            vivi.setDescripcion(desc);
+
+	            System.out.println("Introduce el nuevo precio por dia:");
+	            double precioD = sc.nextDouble();
+	            sc.nextLine();
+	            vivi.setPrecioDia(precioD);
+
+	            System.out.println("Vivienda actualizada.");
+				return vivi;
+	        }
 	       
 	 }
 

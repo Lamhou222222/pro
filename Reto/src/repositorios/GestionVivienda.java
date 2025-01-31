@@ -24,14 +24,14 @@ public class GestionVivienda {
                
             	statement.setInt(1, vivienda.getIdOficina());
                 statement.setString(2, vivienda.getCiudad());
-                statement.setBoolean(3, vivienda.isDisponible());
+                statement.setString(3, vivienda.getDisponible());
                 statement.setString(4, vivienda.getDireccion());
                 statement.setString(5, vivienda.getDescripcion());
                 statement.setInt(6,vivienda.getNumHab() );
                 statement.setDouble(7,vivienda.getPrecioDia() );
                 statement.setString(8,vivienda.getTipo_Vivienda());
                 statement.setString(9,vivienda.getPlanta());
-                statement.setBoolean(10,vivienda.isPiscina());
+                statement.setString(10,vivienda.isPiscina());
                 
                 int rowsInserted = statement.executeUpdate();
             
@@ -46,6 +46,7 @@ public class GestionVivienda {
         		}
     public static void mostrarViviendasBD() {
             	System.out.println("Lista de viviendas");
+            	System.out.println();
                    String Select = "SELECT * FROM mr_robot.vivienda";
                 	try {
         				PreparedStatement statement=ConectorBD.conexion.prepareStatement(Select);
@@ -56,7 +57,7 @@ public class GestionVivienda {
         							", Ciudad: "+rs.getString("Ciudad")+", Direccion: "+rs.getString("Direccion")
         							+", Numero Habitantes: "+rs.getInt("NumHab")+", Descripción: "+rs.getString("descripcion")
         							+", Precio/dia: "+rs.getDouble("Precio_Dia")+", Tipo Vivienda: "+rs.getString("Tipo_Vivienda")
-        							+", Dias: "+rs.getInt("Dias")+", Semanas: "+rs.getInt("Semanas"));
+        							+", Planta: "+rs.getString("Planta")+", Piscina: "+rs.getString("Piscina"));
         				}			
         			} catch (SQLException e) {
         				
@@ -64,6 +65,29 @@ public class GestionVivienda {
         				System.out.println("Error al hacer la consulta: "+Select);
         			}
             }
+    public static void modificarViviendaBD(Vivienda vivi) {
+        String updateQuery = "UPDATE Vivienda SET disponible=?, descripcion=?, Precio_Dia=? WHERE CodVivienda=?";
+
+        try {
+            PreparedStatement statement = ConectorBD.conexion.prepareStatement(updateQuery);
+
+            statement.setString(1, vivi.getDisponible()); 
+            statement.setString(2, vivi.getDescripcion()); 
+            statement.setDouble(3, vivi.getPrecioDia()); 
+            statement.setInt(4, vivi.getCodViv());  
+
+            int filasAfectadas = statement.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                System.out.println("Vivienda actualizada exitosamente.");
+            } else {
+                System.out.println("No se encontró una vivienda con el código proporcionado.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error al hacer la consulta: " + updateQuery);
+        }
+    }
                     
 }
 
