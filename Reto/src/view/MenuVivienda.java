@@ -1,4 +1,5 @@
 package view;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import clases.Vivienda;
 import repositorios.GestionVivienda;
@@ -6,11 +7,11 @@ import repositorios.GestionVivienda;
 public class MenuVivienda {
 	
 	 public static void mostrarMenuVivienda(Scanner sc) {
-	        boolean salir = false;
 	        
+		 boolean salir = false;
 	        
 	        while (!salir) {
-	            System.out.println("\n--- Menú Vivienda ---");
+	            System.out.println("\n--- Menú Viviendas ---");
 	            System.out.println("1.- Agregar Vivienda");
 	            System.out.println("2.- Mostrar Viviendas");
 	            System.out.println("3.- Modificar Vivienda");
@@ -24,23 +25,21 @@ public class MenuVivienda {
 
 	            switch (opcion) {
 	                case 1:
-	                  Vivienda viv=agregarVivienda(sc);
-	                  GestionVivienda.insertarVivienda(viv);
-	                        break;
-	    
+		                 Vivienda viv=agregarVivienda(sc);
+		                 GestionVivienda.insertarVivienda(viv);
+	                     break;
 	                case 2:
 	                	GestionVivienda.mostrarViviendasBD();
 	                    break;
 	                case 3:
 	                	 Vivienda viviendaModificada = modificarVivienda(sc);
-	                   GestionVivienda.modificarViviendaBD(viviendaModificada);
+	                	 GestionVivienda.modificarViviendaBD(viviendaModificada);
 	                   break;
-	                 
 	                case 4:
 	                	return;
 	                case 5:
 	                    salir = true;
-	                    System.out.println("Saliendo del menú. ¡Hasta luego!");
+	                    System.out.println("Finalizando programa. ¡Nos vemos Administrador!");
 	                    break;
 	                default:
 	                    System.out.println("Opción no válida. Intenta de nuevo.");
@@ -101,7 +100,7 @@ public class MenuVivienda {
 
 	            String disponible;
 	            do {
-	                System.out.println("¿Disponible para alquilar?");
+	                System.out.println("¿Disponible para alquilar? (Si/No):");
 	                disponible = sc.nextLine();
 	            } while (!disponible.equalsIgnoreCase("Si") && !disponible.equalsIgnoreCase("No"));
 	            vivi.setDisponible(disponible);
@@ -109,13 +108,20 @@ public class MenuVivienda {
 	            System.out.println("Cambia la descripción de la vivienda:");
 	            String desc = sc.nextLine();
 	            vivi.setDescripcion(desc);
-
-	            System.out.println("Introduce el nuevo precio por dia:");
-	            double precioD = sc.nextDouble();
-	            sc.nextLine();
-	            vivi.setPrecioDia(precioD);
-
-	            System.out.println("Vivienda actualizada.");
+	            
+	            while(true) {
+	            	try {
+	            		System.out.println("Introduce el nuevo precio por dia:");
+	    	            double precioD = sc.nextDouble();
+	    	            sc.nextLine();
+	    	            vivi.setPrecioDia(precioD);
+	    	            break;
+	            	}catch(InputMismatchException e) {
+	            		System.out.println("Error. Introduce un número válido.");
+	            		sc.nextLine();
+	            	}
+	            	
+	            }  
 				return vivi;
 	        }
 	       

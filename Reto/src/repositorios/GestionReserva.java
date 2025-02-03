@@ -64,12 +64,12 @@ public class GestionReserva {
 
         
             if (rowsInserted > 0) {
-                System.out.println("¡Vivienda añadida con éxito!");
+                System.out.println("¡Reserva realizada con éxito!");
             }
         	}
             catch (SQLException e) {
     			e.printStackTrace();
-    			System.out.println("Error al hacer la consulta: "+insert);
+    			System.out.println("Error al hacer la reserva "+insert);
             }
     }
 	public static void mostrarReservas() {

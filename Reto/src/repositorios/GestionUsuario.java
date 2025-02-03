@@ -13,10 +13,14 @@ public class GestionUsuario {
 	
 	private final static Scanner sc= new Scanner (System.in);
 	
-	private static String dniUsuario; // Aquí guardas el DNI del usuario logueado
+	private static String dniUsuario; // Aquí guardas el DNI del usuario logueado.
 
     public static String getDniUsuario() {
-        return dniUsuario;  // Devuelves el DNI cuando se necesite
+        return dniUsuario;  // Devuelves el DNI cuando se necesite.
+    }
+    public static String nomUs;
+    public static String getNomUs() {
+    	return nomUs;
     }
 	
 	public static void insertarUsuario(Usuario usuario) {
@@ -57,7 +61,7 @@ public class GestionUsuario {
 	                System.out.println("Bienvenido Administrador.");
 	                MenuVivienda.mostrarMenuVivienda(sc);
 	            } else if ("Cliente".equalsIgnoreCase(rol)) {
-	                System.out.println("Bienvenido Cliente.");
+	                System.out.println("Bienvenido"+nomUs+".");
 	                MenuOficina.menuOficina(sc);
 	            } else {
 	                System.out.println("Usuario o contraseña incorrectos.");

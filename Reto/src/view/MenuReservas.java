@@ -40,7 +40,7 @@ public class MenuReservas {
 
 	            case 3:
 	                salir = true;
-	                System.out.println("Saliendo del menú. ¡Hasta luego!");
+	                System.out.println("Finalizando programa ¡Hasta la próxima!");
 	                break;
 	            default:
 	                System.out.println("Opción no válida. Intenta de nuevo.");
