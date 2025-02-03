@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import clases.Reserva;
+import repositorios.GestionOficina;
 import repositorios.GestionReserva;
 import repositorios.GestionUsuario;
 
@@ -26,9 +27,11 @@ public class MenuReservas {
 	        sc.nextLine(); // Limpiar el buffer
 
 	        switch (opcion) {
-	            case 1:
-	              Reserva res=agregarReserva(sc);
-	              GestionReserva.insertarReserva(res);
+	            case 1:   
+	            	Reserva reserva=consultarFechas(sc);
+	            	GestionReserva.consultarFechaBD(reserva.getFechaEntrada(), reserva.getFechaSalida());
+	            	Reserva res=agregarReserva(sc, reserva.getFechaEntrada(), reserva.getFechaSalida());
+	            	GestionReserva.insertarReserva(res);
 	                    break;
 
 	            case 2:
@@ -62,19 +65,25 @@ public class MenuReservas {
         }
         return fechaSql;
     }
-	public static Reserva agregarReserva(Scanner sc) {
-	    System.out.println("\n--- Añadir Reserva ---");
-	    System.out.println("Código de la vivienda:");
-	    int codVivienda = sc.nextInt();
-	    sc.nextLine();
-
-	    System.out.println("Fecha de Entrada(yyyy/mm/dd):");
+	public static Reserva consultarFechas(Scanner sc) {
+		System.out.println("Fecha de Entrada(yyyy/mm/dd):");
 	    String fechaE = sc.nextLine();
 	    Date fechaEd = MenuReservas.convertirFecha(fechaE);
 
 	    System.out.print("Fecha de Salida(yyyy/mm/dd): ");
 	    String fechaS = sc.nextLine();
+	   
 	    Date fechaSd = MenuReservas.convertirFecha(fechaS);
+	    Reserva reserva=new Reserva();
+	    reserva.setFechaEntrada(fechaEd);
+	    reserva.setFechaSalida(fechaSd);
+		return reserva;
+	}
+	public static Reserva agregarReserva(Scanner sc, Date fechaEd, Date fechaSd) {
+	    System.out.println("\n--- Añadir Reserva ---");
+	    System.out.println("Código de la vivienda:");
+	    int codVivienda = sc.nextInt();
+	    sc.nextLine();
 
 	    long ms = fechaSd.getTime() - fechaEd.getTime();
 	    long dias = ms / (1000 * 60 * 60 * 24);

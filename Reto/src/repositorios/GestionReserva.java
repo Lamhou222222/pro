@@ -1,5 +1,6 @@
 package repositorios;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,6 +8,36 @@ import java.sql.SQLException;
 import clases.Reserva;
 
 public class GestionReserva {
+	
+	public static void consultarFechaBD(Date fechaEntrada, Date fechaSalida) {
+		
+		String Select= "SELECT v.CodVivienda, v.IdOficina, v.Ciudad, v.Direccion, v.Descripcion, v.NumHab, v.Precio_Dia, v.Tipo_Vivienda, v.Planta, v.Piscina"
+				+ " FROM vivienda v JOIN reserva r ON v.CodVivienda = r.CodVivienda WHERE NOT ((FechaEntrada BETWEEN ? AND ?) OR (FechaSalida BETWEEN ? AND ?)"
+				+ "    OR (FechaEntrada < ? AND FechaSalida > ?))";
+		
+		try {
+			PreparedStatement statement=ConectorBD.conexion.prepareStatement(Select);
+			statement.setDate(1, fechaEntrada);
+			statement.setDate(2, fechaSalida);
+			statement.setDate(3, fechaEntrada);
+			statement.setDate(4, fechaSalida);
+			statement.setDate(5, fechaSalida);
+			statement.setDate(6, fechaEntrada);
+			ResultSet rs= statement.executeQuery();
+			
+			while(rs.next()) {
+				System.out.println("Codigo Vivienda: "+rs.getInt("CodVivienda")+", IdOficina: "+rs.getInt("IdOficina")
+				+", Ciudad: "+rs.getString("Ciudad")+", Direccion: "+rs.getString("Direccion")
+						+", Numero Habitantes: "+rs.getInt("NumHab")+", Descripción: "+rs.getString("descripcion")
+						+", Precio/dia: "+rs.getDouble("Precio_Dia")+", Tipo Vivienda: "+rs.getString("Tipo_Vivienda")
+						+", Planta: "+rs.getString("Planta")+", Piscina: "+rs.getString("Piscina"));
+			}
+		}catch(SQLException e) {
+		e.printStackTrace();
+		System.out.println("Error al hacer la consulta: "+Select);
+		
+		}
+	}
 	
 	public static void insertarReserva(Reserva reserva) {
         

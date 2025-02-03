@@ -74,16 +74,16 @@ public class MenuOficina {
 	            
 	            switch (opcion) {
 	                case 1:
-	                	GestionOficina.mostrarOficinaViviendasBD(opcion);
+	                	GestionOficina.mostrarOficinaViviendasBD(1);
 	                	MenuReservas.mostrarMenuReservas(sc);
 	                        break;
 	    
 	                case 2:
-	                	GestionOficina.mostrarOficinaViviendasBD(opcion);
+	                	GestionOficina.mostrarOficinaViviendasBD(2);
 	                	MenuReservas.mostrarMenuReservas(sc);
 	                    break;
 	                case 3:
-	                	GestionOficina.mostrarOficinaViviendasBD(opcion);
+	                	GestionOficina.mostrarOficinaViviendasBD(3);
 	                	MenuReservas.mostrarMenuReservas(sc);
 	                 break;
 	                case 4:
