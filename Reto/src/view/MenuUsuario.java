@@ -72,7 +72,6 @@ public class MenuUsuario {
 			System.out.println("Ingresa tu contraseña(mínimo 8 caracteres):");
 			String contraseña;
 			System.out.println();
-			System.out.println();
 			do {
 			contraseña=sc.nextLine();
 			if(contraseña.length()<8) {

@@ -81,12 +81,22 @@ public class GestionReserva {
 	    return precioDia;
 	}
 	public static void finalizarReserva(Reserva rese) {
-		String updateQuery= "UPDATE Vivienda SET disponible=? WHERE dniUsuario=?";
+		String updateQuery=  "UPDATE Vivienda v " +
+			                "JOIN Reserva r ON v.CodVivienda = r.CodVivienda " +
+			                "SET v.disponible=? " +
+			                "WHERE r.dniUsuario=?";
 				
 				try {
 					PreparedStatement statement= ConectorBD.conexion.prepareStatement(updateQuery);
 					statement.setString(1, "Si");
-					statement.setString(2, rese.getDniUsuario());
+					statement.setString(2, GestionUsuario.getDniUsuario());
+					
+					int rowsAffected=statement.executeUpdate();
+					if (rowsAffected > 0) {
+			            System.out.println("Reserva finalizada correctamente.");
+			        } else {
+			            System.out.println("No se encontró ninguna reserva para ese usuario.");
+			        }
 					
 				}catch(SQLException e) {
 					e.printStackTrace();
