@@ -17,10 +17,8 @@ public class MenuReservas {
 	    while (!salir) {
 	        System.out.println("\n--- Menú Reservas ---");
 	        System.out.println("1.- Añadir Reserva");
-	        System.out.println("2.- Mostrar Reserva");
-	        System.out.println("3.- Finalizar Reserva");
-	        System.out.println("4.- Volver atras");
-	        System.out.println("5.- Salir");
+	        System.out.println("2.- Volver atras");
+	        System.out.println("3.- Salir");
 	        System.out.println();
 	        System.out.print("Selecciona una opción: ");
 
@@ -34,17 +32,10 @@ public class MenuReservas {
 	                    break;
 
 	            case 2:
-	            	GestionReserva.mostrarReservas();
-	                break;
-	            case 3:
-	               Reserva rese=new Reserva();
-	               GestionReserva.finalizarReserva(rese);
-	             
-	            case 4:
-	            	
-	                return;
+	          
+	             return;
 
-	            case 5:
+	            case 3:
 	                salir = true;
 	                System.out.println("Saliendo del menú. ¡Hasta luego!");
 	                break;
