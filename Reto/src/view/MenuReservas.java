@@ -6,12 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import clases.Reserva;
-import clases.Vivienda;
 import repositorios.GestionReserva;
 import repositorios.GestionUsuario;
-import repositorios.GestionVivienda;
-
-
 
 public class MenuReservas {
 	

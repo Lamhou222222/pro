@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import clases.Usuario;
-import clases.Vivienda;
 import view.MenuOficina;
 import view.MenuVivienda;
 
