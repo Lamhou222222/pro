@@ -80,5 +80,19 @@ public class GestionReserva {
 
 	    return precioDia;
 	}
+	public static void finalizarReserva(Reserva rese) {
+		String updateQuery= "UPDATE Vivienda SET disponible=? WHERE dniUsuario=?";
+				
+				try {
+					PreparedStatement statement= ConectorBD.conexion.prepareStatement(updateQuery);
+					statement.setString(1, "Si");
+					statement.setString(2, rese.getDniUsuario());
+					
+				}catch(SQLException e) {
+					e.printStackTrace();
+		            System.out.println("Error al hacer la consulta: " + updateQuery);
+	
+				}
+	}
 
 }

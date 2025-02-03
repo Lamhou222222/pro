@@ -6,12 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import clases.Reserva;
-import clases.Vivienda;
 import repositorios.GestionReserva;
 import repositorios.GestionUsuario;
-import repositorios.GestionVivienda;
-
-
 
 public class MenuReservas {
 	
@@ -22,7 +18,7 @@ public class MenuReservas {
 	        System.out.println("\n--- Menú Reservas ---");
 	        System.out.println("1.- Añadir Reserva");
 	        System.out.println("2.- Mostrar Reserva");
-	        System.out.println("3.- Modificar Reserva");
+	        System.out.println("3.- Finalizar Reserva");
 	        System.out.println("4.- Volver atras");
 	        System.out.println("5.- Salir");
 	        System.out.println();
@@ -41,7 +37,8 @@ public class MenuReservas {
 	            	GestionReserva.mostrarReservas();
 	                break;
 	            case 3:
-	               //modificarVivienda()
+	               Reserva rese=new Reserva();
+	               GestionReserva.finalizarReserva(rese);
 	             
 	            case 4:
 	            	
