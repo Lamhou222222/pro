@@ -145,5 +145,27 @@ public class GestionReserva {
 	
 				}
 	}
+	public static boolean esViviendaDeOficina(int codVivienda, int idOficina) {
+	    String query = "SELECT COUNT(*) FROM mr_robot.vivienda WHERE CodVivienda = ? AND IdOficina = ?";
+	    
+	    try {
+	        PreparedStatement statement = ConectorBD.conexion.prepareStatement(query);
+	        statement.setInt(1, codVivienda);
+	        statement.setInt(2, idOficina);
+	        
+	        ResultSet rs = statement.executeQuery();
+	        
+	        if (rs.next() && rs.getInt(1) > 0) {
+	            return true; // La vivienda pertenece a la oficina
+	        }
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        System.out.println("Error al verificar la vivienda.");
+	    }
+	    
+	    return false; // La vivienda no pertenece a la oficina
+	}
+
 
 }

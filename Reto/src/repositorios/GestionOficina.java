@@ -7,17 +7,19 @@ import java.sql.SQLException;
 public class GestionOficina {
 
     public static void mostrarOficinaViviendasBD(int id) {
-        System.out.println("Lista de Viviendas");
 
         String Select = "SELECT * FROM mr_robot.vivienda WHERE IdOficina = ?";
         try {
             PreparedStatement statement = ConectorBD.conexion.prepareStatement(Select);
             statement.setInt(1, id);
-
+            
             ResultSet rs = statement.executeQuery();
+            
+
             if (!rs.next()) {
             	System.out.println();
                 System.out.println("No hay viviendas disponibles.");
+                return;
             } else { 
                 do {
                     System.out.println("Codigo Vivienda: " + rs.getInt("CodVivienda") + 
