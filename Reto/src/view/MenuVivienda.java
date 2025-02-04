@@ -2,6 +2,7 @@ package view;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import clases.Vivienda;
+import repositorios.GestionUsuario;
 import repositorios.GestionVivienda;
 
 public class MenuVivienda {
@@ -11,12 +12,14 @@ public class MenuVivienda {
 		 boolean salir = false;
 	        
 	        while (!salir) {
-	            System.out.println("\n--- Menú Viviendas ---");
+	            System.out.println("\n--- Menú Administrador ---");
 	            System.out.println("1.- Agregar Vivienda");
 	            System.out.println("2.- Mostrar Viviendas");
 	            System.out.println("3.- Modificar Vivienda");
-	            System.out.println("4.- Volver atras");
-	            System.out.println("5.- Salir");
+	            System.out.println("4.- Eliminar Vivienda");
+	            System.out.println("5.- Mostrar Usuarios");
+	            System.out.println("6.- Volver atras");
+	            System.out.println("7.- Salir");
 	            System.out.println();
 	            System.out.print("Selecciona una opción: ");
 
@@ -36,8 +39,18 @@ public class MenuVivienda {
 	                	 GestionVivienda.modificarViviendaBD(viviendaModificada);
 	                   break;
 	                case 4:
-	                	return;
+	                  	GestionVivienda.mostrarViviendasBD();
+	                  	System.out.println();
+	                	System.out.println("¿Que vivienda quieres borrar? Introduce su CodVivienda:");
+	                	int CodV=sc.nextInt();
+	                	GestionVivienda.eliminarVivienda(CodV);
+	                	break;
 	                case 5:
+	                	GestionUsuario.mostrarUsuarios();
+	                	break;
+	                case 6:
+	                	return;
+	                case 7:
 	                    salir = true;
 	                    System.out.println("Finalizando programa. ¡Nos vemos Administrador!");
 	                    break;

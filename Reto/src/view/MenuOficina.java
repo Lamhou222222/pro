@@ -3,7 +3,6 @@ package view;
 import java.util.Scanner;
 
 import clases.Oficina;
-import clases.Reserva;
 import repositorios.GestionOficina;
 import repositorios.GestionReserva;
 

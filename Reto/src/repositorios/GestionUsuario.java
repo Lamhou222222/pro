@@ -74,5 +74,23 @@ public class GestionUsuario {
 	        System.out.println("Error al realizar el login.");
 	    }
 	}
+	public static void mostrarUsuarios() {
+		String Select= "SELECT * FROM usuario";
+		try {
+			PreparedStatement statement=ConectorBD.conexion.prepareStatement(Select);
+			ResultSet rs=statement.executeQuery(Select);
+			
+			while(rs.next()) {
+				System.out.println("DNI: "+rs.getString("DNI")+", Nombre: "+rs.getString("Nombre")
+				+", Nombre Usuario: "+rs.getString("NomUs")+", Email: "+rs.getString("Email")+", Contraseña: "+rs.getString("Contraseña")
+						+", Rol: "+rs.getString("Rol"));
+			}			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			System.out.println("Error al mostrar los usuarios: "+Select);
+		}
+		
+	}
 
 }

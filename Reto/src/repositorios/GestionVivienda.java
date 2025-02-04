@@ -85,6 +85,26 @@ public class GestionVivienda {
             System.out.println("Error al hacer la consulta: " + updateQuery);
         }
     }
+    public static void eliminarVivienda(int CodV) {
+    	String deleteQuery= "DELETE FROM vivienda WHERE CodVivienda = ?";
+    	
+    	try {
+    		PreparedStatement statement = ConectorBD.conexion.prepareStatement(deleteQuery);
+    		
+    		statement.setInt(1, CodV );
+    		 int rowsAffected = statement.executeUpdate(); 
+
+    	        if (rowsAffected > 0) {
+    	            System.out.println("¡Vivienda eliminada con éxito!");
+    	        } else {
+    	            System.out.println("No se encontró la vivienda para eliminar.");
+    	        }
+    	}catch(SQLException e) {
+    		e.printStackTrace();
+            System.out.println("Error al hacer la consulta: " + deleteQuery);
+    	}
+    			
+    }
                     
 }
 

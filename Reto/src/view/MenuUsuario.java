@@ -12,7 +12,9 @@ public class MenuUsuario {
 	public static void mostrarMenuUsuario(Scanner sc) {
 		int opcion = 0;
 		while (opcion!=3) {
-		System.out.println("--¡BIENVENIDO A MR. ROBOT! Tu App de alquiler de viviendas vacacionales--");
+			System.out.println();
+		System.out.println("--¡BIENVENIDO A MR. ROBOT!--"
+				+ "\n--Tu App de alquiler de viviendas vacacionales--");
 		System.out.println("\n--- Menú Usuario ---");
         System.out.println("1.- Crear Usuario");
         System.out.println("2.- Login Usuario");
@@ -90,9 +92,5 @@ public class MenuUsuario {
 			return usuario;	
 
 	}
-	public static void menuLogin() {
-		
-	}
-	
 
 }
