@@ -55,14 +55,6 @@ public class GestionReserva {
             
             int rowsInserted = statement.executeUpdate();
             
-            String updateVivienda = "UPDATE vivienda SET disponible = 'No' WHERE CodVivienda = ?";
-        
-            PreparedStatement statementUpdate = ConectorBD.conexion.prepareStatement(updateVivienda);
-            statementUpdate.setInt(1, reserva.getCodVivienda());
-
-            statementUpdate.executeUpdate();
-
-        
             if (rowsInserted > 0) {
                 System.out.println("¡Reserva realizada con éxito!");
             }
@@ -73,25 +65,31 @@ public class GestionReserva {
             }
     }
 	public static void mostrarReservas() {
-    	System.out.println("Lista de viviendas");
-           String Select = "SELECT * FROM mr_robot.reserva WHERE dniUsuario= ?";
-          
-        	try {
-				PreparedStatement statement=ConectorBD.conexion.prepareStatement(Select);
-				statement.setString(1, GestionUsuario.getDniUsuario());
-				ResultSet rs=statement.executeQuery();
-				
-				while(rs.next()) {
-					System.out.println("Codigo reserva: "+rs.getInt("CodReserva")+", DNI: "+rs.getString("DniUsuario")+", CodVivienda: "+rs.getInt("CodVivienda")+
-							", Fecha Entrada: "+rs.getString("FechaEntrada")+", Fecha Salida: "+rs.getString("FechaSalida")
-							+", Numero de Huespedes: "+rs.getInt("NumHuespedes")+", Total a pagar: "+rs.getDouble("TotalPagado"));
-				}			
-			} catch (SQLException e) {
-				
-				e.printStackTrace();
-				System.out.println("Error al hacer la consulta: "+Select);
-			}
-    }
+	    System.out.println("Lista de viviendas");
+	    String Select = "SELECT * FROM mr_robot.reserva WHERE dniUsuario= ?";
+
+	    try {
+	        PreparedStatement statement = ConectorBD.conexion.prepareStatement(Select);
+	        statement.setString(1, GestionUsuario.getDniUsuario());
+	        ResultSet rs = statement.executeQuery();
+
+	        if (!rs.next()) {
+	            System.out.println("¡No existe ninguna reserva!");
+	        } else {
+
+	            do {
+	                System.out.println("Codigo reserva: " + rs.getInt("CodReserva") + ", DNI: " + rs.getString("DniUsuario") +
+	                        ", CodVivienda: " + rs.getInt("CodVivienda") + ", Fecha Entrada: " + rs.getString("FechaEntrada") +
+	                        ", Fecha Salida: " + rs.getString("FechaSalida") + ", Numero de Huespedes: " + rs.getInt("NumHuespedes") +
+	                        ", Total a pagar: " + rs.getDouble("TotalPagado"));
+	            } while (rs.next());
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        System.out.println("Error al hacer la consulta: " + Select);
+	    }
+	}
+
 	public static double obtenerPrecioDiaVivienda(int codVivienda) {
 	    String query = "SELECT precio_Dia FROM vivienda WHERE CodVivienda = ?";
 	    double precioDia = 0.0;

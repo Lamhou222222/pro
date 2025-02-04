@@ -17,7 +17,7 @@ public class MenuReservas {
 
 	    while (!salir) {
 	        System.out.println("\n--- Menú Reservas ---");
-	        System.out.println("1.- Añadir Reserva");
+	        System.out.println("1.- Disponibilidad fechas");
 	        System.out.println("2.- Volver atras");
 	        System.out.println("3.- Salir");
 	        System.out.println();

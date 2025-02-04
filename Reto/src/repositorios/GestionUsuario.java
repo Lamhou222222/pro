@@ -18,9 +18,9 @@ public class GestionUsuario {
     public static String getDniUsuario() {
         return dniUsuario;  // Devuelves el DNI cuando se necesite.
     }
-    public static String nomUs;
-    public static String getNomUs() {
-    	return nomUs;
+    public static String nombre;
+    public static String getNombre() {
+    	return nombre;
     }
 	
 	public static void insertarUsuario(Usuario usuario) {
@@ -57,11 +57,12 @@ public class GestionUsuario {
 	        } else {
 	            String rol = rs.getString("Rol");
 	            dniUsuario = rs.getString("DNI");
+	            nombre= rs.getString("Nombre");
 	            if ("Administrador".equalsIgnoreCase(rol)) {
 	                System.out.println("Bienvenido Administrador.");
 	                MenuVivienda.mostrarMenuVivienda(sc);
 	            } else if ("Cliente".equalsIgnoreCase(rol)) {
-	                System.out.println("Bienvenido"+nomUs+".");
+	                System.out.println("Bienvenido "+nombre+".");
 	                MenuOficina.menuOficina(sc);
 	            } else {
 	                System.out.println("Usuario o contraseña incorrectos.");
