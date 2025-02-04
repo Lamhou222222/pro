@@ -2,6 +2,7 @@ package view;
 
 import java.util.Scanner;
 
+import clases.Oficina;
 import clases.Reserva;
 import repositorios.GestionOficina;
 import repositorios.GestionReserva;
@@ -64,21 +65,23 @@ public class MenuOficina {
 	            System.out.print("Selecciona una opción: ");
 
 	            int opcion = sc.nextInt();
+	            Oficina ofi= new Oficina();
+	            ofi.setId(opcion);
 	            sc.nextLine();
 	            
 	            switch (opcion) {
 	                case 1:
-	                	GestionOficina.mostrarOficinaViviendasBD(1);
-	                	MenuReservas.mostrarMenuReservas(sc);
+	                	GestionOficina.mostrarOficinaViviendasBD(opcion);
+	                	MenuReservas.mostrarMenuReservas(sc, opcion);
 	                        break;
 	    
 	                case 2:
-	                	GestionOficina.mostrarOficinaViviendasBD(2);
-	                	MenuReservas.mostrarMenuReservas(sc);
+	                	GestionOficina.mostrarOficinaViviendasBD(opcion);
+	                	MenuReservas.mostrarMenuReservas(sc, opcion);
 	                    break;
 	                case 3:
-	                	GestionOficina.mostrarOficinaViviendasBD(3);
-	                	MenuReservas.mostrarMenuReservas(sc);
+	                	GestionOficina.mostrarOficinaViviendasBD(opcion);
+	                	MenuReservas.mostrarMenuReservas(sc, opcion);
 	                 break;
 	                case 4:
 	                	return;

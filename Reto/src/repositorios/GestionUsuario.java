@@ -66,6 +66,7 @@ public class GestionUsuario {
 	                MenuOficina.menuOficina(sc);
 	            } else {
 	                System.out.println("Usuario o contraseña incorrectos.");
+	                System.out.println();
 	            }
 	        }
 	    } catch (SQLException e) {

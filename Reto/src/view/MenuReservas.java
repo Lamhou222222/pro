@@ -12,7 +12,7 @@ import repositorios.GestionUsuario;
 
 public class MenuReservas {
 	
-	public static void mostrarMenuReservas(Scanner sc) {
+	public static void mostrarMenuReservas(Scanner sc, int idOficina) {
 	    boolean salir = false;
 
 	    while (!salir) {
@@ -23,13 +23,13 @@ public class MenuReservas {
 	        System.out.println();
 	        System.out.print("Selecciona una opción: ");
 
-	        int opcion = sc.nextInt();
+	        int opcion2 = sc.nextInt();
 	        sc.nextLine(); // Limpiar el buffer
 
-	        switch (opcion) {
+	        switch (opcion2) {
 	            case 1:   
 	            	Reserva reserva=consultarFechas(sc);
-	            	GestionReserva.consultarFechaBD(reserva.getFechaEntrada(), reserva.getFechaSalida());
+	            	GestionReserva.consultarFechaBD(idOficina,reserva.getFechaEntrada(), reserva.getFechaSalida());
 	            	Reserva res=agregarReserva(sc, reserva.getFechaEntrada(), reserva.getFechaSalida());
 	            	GestionReserva.insertarReserva(res);
 	                    break;
