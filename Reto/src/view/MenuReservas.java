@@ -33,15 +33,16 @@ public class MenuReservas {
 	            	    return; // O manejar el error de otra forma
 	            	}
 	            	GestionReserva.consultarFechaBD(idOficina,reserva.getFechaEntrada(), reserva.getFechaSalida());
+	            	System.out.println("Viviendas disponibles en estas fechas:");
 	            	Reserva res=agregarReserva(sc, idOficina, reserva.getFechaEntrada(), reserva.getFechaSalida());
 	            	if(res==null) {
 	            		System.out.println("Cambia de oficina o selecciona una vivienda asociada a esta oficina.");
 	            		return;
 	            	}
 	            	GestionReserva.insertarReserva(res);
-	                    break;
-
-	            case 2:
+	            	GestionReserva.mostrarReservas();
+	            	return;
+			case 2:
 	          
 	             return;
 
@@ -111,7 +112,7 @@ public class MenuReservas {
 	    double precioDia = GestionReserva.obtenerPrecioDiaVivienda(codVivienda);
 
 	    double totalPagado = totalPagar(dias, precioDia);
-	    System.out.println("El total a pagar por la reserva: "+totalPagado);
+	    System.out.println("El total a pagar por la reserva: "+totalPagado+" euros.");
 
 	    String dniUsuario = GestionUsuario.getDniUsuario();
 	    
