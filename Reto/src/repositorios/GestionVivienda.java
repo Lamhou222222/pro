@@ -14,21 +14,20 @@ public class GestionVivienda {
 	
     public static void insertarVivienda(Vivienda vivienda) {
         
-            String insert = "INSERT INTO vivienda (idOficina, ciudad, disponible, direccion, descripcion, numhab, precio_dia, Tipo_Vivienda, planta, piscina) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String insert = "INSERT INTO vivienda (idOficina, ciudad, direccion, descripcion, numhab, precio_dia, Tipo_Vivienda, planta, piscina) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
             try ( 
                  PreparedStatement statement = ConectorBD.conexion.prepareStatement(insert)) {
                
             	statement.setInt(1, vivienda.getIdOficina());
                 statement.setString(2, vivienda.getCiudad());
-                statement.setString(3, vivienda.getDisponible());
-                statement.setString(4, vivienda.getDireccion());
-                statement.setString(5, vivienda.getDescripcion());
-                statement.setInt(6,vivienda.getNumHab() );
-                statement.setDouble(7,vivienda.getPrecioDia() );
-                statement.setString(8,vivienda.getTipo_Vivienda());
-                statement.setString(9,vivienda.getPlanta());
-                statement.setString(10,vivienda.isPiscina());
+                statement.setString(3, vivienda.getDireccion());
+                statement.setString(4, vivienda.getDescripcion());
+                statement.setInt(5,vivienda.getNumHab() );
+                statement.setDouble(6,vivienda.getPrecioDia() );
+                statement.setString(7,vivienda.getTipo_Vivienda());
+                statement.setString(8,vivienda.getPlanta());
+                statement.setString(9,vivienda.isPiscina());
                 
                 int rowsInserted = statement.executeUpdate();
             
@@ -51,7 +50,7 @@ public class GestionVivienda {
         				
         				while(rs.next()) {
         					System.out.println("Codigo Vivienda: "+rs.getInt("CodVivienda")+", IdOficina: "+rs.getInt("IdOficina")
-        					+", Disponible: "+rs.getString("Disponible")+", Ciudad: "+rs.getString("Ciudad")+", Direccion: "+rs.getString("Direccion")
+        					+", Ciudad: "+rs.getString("Ciudad")+", Direccion: "+rs.getString("Direccion")
         							+", Numero Habitaciones: "+rs.getInt("NumHab")+", Descripción: "+rs.getString("descripcion")
         							+", Precio/dia: "+rs.getDouble("Precio_Dia")+", Tipo Vivienda: "+rs.getString("Tipo_Vivienda")
         							+", Planta: "+rs.getString("Planta")+", Piscina: "+rs.getString("Piscina"));
@@ -63,15 +62,14 @@ public class GestionVivienda {
         			}
             }
     public static void modificarViviendaBD(Vivienda vivi) {
-        String updateQuery = "UPDATE Vivienda SET disponible=?, descripcion=?, Precio_Dia=? WHERE CodVivienda=?";
+        String updateQuery = "UPDATE Vivienda SET descripcion=?, Precio_Dia=? WHERE CodVivienda=?";
 
         try {
             PreparedStatement statement = ConectorBD.conexion.prepareStatement(updateQuery);
 
-            statement.setString(1, vivi.getDisponible()); 
-            statement.setString(2, vivi.getDescripcion()); 
-            statement.setDouble(3, vivi.getPrecioDia()); 
-            statement.setInt(4, vivi.getCodViv());  
+            statement.setString(1, vivi.getDescripcion()); 
+            statement.setDouble(2, vivi.getPrecioDia()); 
+            statement.setInt(3, vivi.getCodViv());  
 
             int filasAfectadas = statement.executeUpdate();
 
