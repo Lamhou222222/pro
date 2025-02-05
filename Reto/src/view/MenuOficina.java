@@ -1,5 +1,6 @@
 package view;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import clases.Oficina;
@@ -20,7 +21,16 @@ public class MenuOficina {
 	            System.out.println("4.- Salir");
 	            System.out.println();
 	            System.out.print("Selecciona una opción: ");
-	            int opcion;
+	            int opcion = -1;  
+
+	            try {
+	                opcion = sc.nextInt();
+	                sc.nextLine(); 
+	            } catch (InputMismatchException e) {
+	                System.out.println("Error. Debes ingresar un número válido.");
+	                sc.nextLine();
+	                continue;
+	            }
 	        do {
 	        	opcion = sc.nextInt();
 	            sc.nextLine();

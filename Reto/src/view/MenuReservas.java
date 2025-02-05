@@ -3,6 +3,7 @@ package view;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import clases.Reserva;
@@ -21,9 +22,17 @@ public class MenuReservas {
 	        System.out.println("3.- Salir");
 	        System.out.println();
 	        System.out.print("Selecciona una opción: ");
+	        
+	        int opcion2 = -1;  
 
-	        int opcion2 = sc.nextInt();
-	        sc.nextLine();
+            try {
+                opcion2 = sc.nextInt();
+                sc.nextLine(); 
+            } catch (InputMismatchException e) {
+                System.out.println("Error. Debes ingresar un número válido.");
+                sc.nextLine();
+                continue;
+            }
 
 	        switch (opcion2) {
 	            case 1:   

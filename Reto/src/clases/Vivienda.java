@@ -5,7 +5,6 @@ public class Vivienda {
 	//Atributos
 	protected int codViv;
 	protected int idOficina;
-	protected String disponible;
 	protected String ciudad;
 	protected String direccion;
 	protected int numHab;
@@ -21,11 +20,10 @@ public class Vivienda {
 	}
 
 	//Constructor con atributos
-	public Vivienda(int idOficina, String disponible, String ciudad, String direccion, int numHab, String descripcion,
+	public Vivienda(int idOficina, String ciudad, String direccion, int numHab, String descripcion,
 			double precioDia, String tipo_Vivienda, String planta, String piscina) {
 		super();
 		this.idOficina=idOficina;
-		this.disponible=disponible;
 		this.ciudad = ciudad;	
 		this.direccion = direccion;
 		this.numHab = numHab;
@@ -55,13 +53,6 @@ public class Vivienda {
 		this.idOficina = idOficina;
 	}
 	
-	public String getDisponible() {
-		return disponible;
-	}
-
-	public void setDisponible(String disponible) {
-		this.disponible = disponible;
-	}
 
 	public String getCiudad() {
 		return ciudad;
