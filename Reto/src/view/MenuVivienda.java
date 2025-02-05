@@ -2,6 +2,7 @@ package view;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import clases.Vivienda;
+import repositorios.GestionReserva;
 import repositorios.GestionUsuario;
 import repositorios.GestionVivienda;
 
@@ -19,13 +20,22 @@ public class MenuVivienda {
 	            System.out.println("4.- Eliminar Vivienda");
 	            System.out.println("5.- Mostrar Usuarios");
 	            System.out.println("6.- Eliminar Usuarios");
-	            System.out.println("7.- Volver atras");
-	            System.out.println("8.- Salir");
+	            System.out.println("7.- Mostrar Reservas");
+	            System.out.println("8.- Volver atras");
+	            System.out.println("9.- Salir");
 	            System.out.println();
 	            System.out.print("Selecciona una opción: ");
+	            
+	            int opcion = -1;  
 
-	            int opcion = sc.nextInt();
-	            sc.nextLine();
+	            try {
+	                opcion = sc.nextInt();
+	                sc.nextLine(); 
+	            } catch (InputMismatchException e) {
+	                System.out.println("Error. Debes ingresar un número válido.");
+	                sc.nextLine();
+	                continue;
+	            }
 
 	            switch (opcion) {
 	                case 1:
@@ -56,8 +66,11 @@ public class MenuVivienda {
 	                	GestionVivienda.eliminarUsuario(email);
 	                	break;
 	                case 7:
+	                	GestionReserva.mostrarTodasReservas();
 	                	return;
 	                case 8:
+	                	return;
+	                case 9:
 	                    salir = true;
 	                    System.out.println("Finalizando programa. ¡Nos vemos Administrador!");
 	                    break;

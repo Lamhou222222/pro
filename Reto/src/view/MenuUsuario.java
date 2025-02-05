@@ -1,5 +1,6 @@
 package view;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,9 +23,16 @@ public class MenuUsuario {
         System.out.println("2.- Login Usuario");
         System.out.println("3.- Salir");
         System.out.println();
-        System.out.print("Selecciona una opción: ");
-        opcion = sc.nextInt();
-        sc.nextLine();
+        System.out.print("Selecciona una opción: ");  
+
+        try {
+            opcion = sc.nextInt();
+            sc.nextLine(); 
+        } catch (InputMismatchException e) {
+            System.out.println("Error. Debes ingresar un número válido.");
+            sc.nextLine();
+            continue;
+        }
 
         switch (opcion) {
             case 1:

@@ -102,6 +102,31 @@ public class GestionReserva {
 	        System.out.println("Error al hacer la consulta: " + Select);
 	    }
 	}
+	public static void mostrarTodasReservas() {
+	    System.out.println("Lista de reservas");
+	    String Select = "SELECT * FROM mr_robot.reserva";
+
+	    try {
+	        PreparedStatement statement = ConectorBD.conexion.prepareStatement(Select);
+	        
+	        ResultSet rs = statement.executeQuery();
+
+	        if (!rs.next()) {
+	            System.out.println("¡No existe ninguna reserva!");
+	        } else {
+
+	            do {
+	                System.out.println("Codigo reserva: " + rs.getInt("CodReserva") + ", DNI: " + rs.getString("DniUsuario") +
+	                        ", CodVivienda: " + rs.getInt("CodVivienda") + ", Fecha Entrada: " + rs.getString("FechaEntrada") +
+	                        ", Fecha Salida: " + rs.getString("FechaSalida") + ", Numero de Huespedes: " + rs.getInt("NumHuespedes") +
+	                        ", Total a pagar: " + rs.getDouble("TotalPagado"));
+	            } while (rs.next());
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        System.out.println("Error al hacer la consulta: " + Select);
+	    }
+	}
 
 	public static double obtenerPrecioDiaVivienda(int codVivienda) {
 	    String query = "SELECT precio_Dia FROM vivienda WHERE CodVivienda = ?";
