@@ -67,7 +67,7 @@ public class MenuVivienda {
 	                	break;
 	                case 7:
 	                	GestionReserva.mostrarTodasReservas();
-	                	return;
+	                	break;
 	                case 8:
 	                	return;
 	                case 9:

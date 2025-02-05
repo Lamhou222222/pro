@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import clases.Vivienda;
 
 
-
 public class GestionVivienda {
 	
 	
