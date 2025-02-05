@@ -23,21 +23,22 @@ public class MenuReservas {
 	        System.out.print("Selecciona una opción: ");
 
 	        int opcion2 = sc.nextInt();
-	        sc.nextLine(); // Limpiar el buffer
+	        sc.nextLine();
 
 	        switch (opcion2) {
 	            case 1:   
 	            	Reserva reserva=consultarFechas(sc);
 	            	if (reserva == null) {
-	            	    System.out.println("La fecha de entrada no puede ser posterior a la fecha de salida.");
-	            	    return; // O manejar el error de otra forma
+	            	    break;
 	            	}
-	            	GestionReserva.consultarFechaBD(idOficina,reserva.getFechaEntrada(), reserva.getFechaSalida());
-	            	System.out.println("Viviendas disponibles en estas fechas:");
+	            	boolean viviendaDisponible=GestionReserva.consultarFechaBD(idOficina,reserva.getFechaEntrada(), reserva.getFechaSalida());
+	            	if(!viviendaDisponible) {
+	            		break;
+	            	}
 	            	Reserva res=agregarReserva(sc, idOficina, reserva.getFechaEntrada(), reserva.getFechaSalida());
 	            	if(res==null) {
 	            		System.out.println("Cambia de oficina o selecciona una vivienda asociada a esta oficina.");
-	            		return;
+	            		break;
 	            	}
 	            	GestionReserva.insertarReserva(res);
 	            	GestionReserva.mostrarReservas();
@@ -57,42 +58,53 @@ public class MenuReservas {
 	        }
 	    }
 	private static Date convertirFecha(String fechaString) {
-	       
-        SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy/MM/dd");
-        java.sql.Date fechaSql = null;
-        try {
-            // Convertir el String a java.util.Date
-            java.util.Date fechaUtil = formatoEntrada.parse(fechaString);
-            
-            // Convertir el java.util.Date a java.sql.Date
-            fechaSql = new java.sql.Date(fechaUtil.getTime());
-            
-            
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return fechaSql;
-    }
-	public static Reserva consultarFechas(Scanner sc) {
-		System.out.println("Fecha de Entrada(yyyy/mm/dd):");
-	    String fechaE = sc.nextLine();
-	    Date fechaEd = MenuReservas.convertirFecha(fechaE);
-
-	    System.out.print("Fecha de Salida(yyyy/mm/dd): ");
-	    String fechaS = sc.nextLine();
-	    
-	   
-	   
-	    Date fechaSd = MenuReservas.convertirFecha(fechaS);
-	    if(fechaEd.after(fechaSd)) {
-	    	System.out.println("Error.");
-	    	return null;
+	    SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy/MM/dd");
+	    java.sql.Date fechaSql = null;
+	    try {
+	        java.util.Date fechaUtil = formatoEntrada.parse(fechaString);
+	        
+	        fechaSql = new java.sql.Date(fechaUtil.getTime());
+	        
+	    } catch (ParseException e) {
+	        System.out.println("Error. El formato de la fecha no es válido. Por favor, ingresa la fecha en formato yyyy/MM/dd.");
 	    }
-	    Reserva reserva=new Reserva();
+	    return fechaSql;
+	}
+
+
+	public static Reserva consultarFechas(Scanner sc) {
+	    Date fechaEd = null;
+	    Date fechaSd = null;
+
+	    System.out.println("Fecha de Entrada(yyyy/MM/dd):");
+	    String fechaE = sc.nextLine();
+
+
+	    while ((fechaEd = MenuReservas.convertirFecha(fechaE)) == null) {
+	        System.out.println("Fecha de Entrada(yyyy/MM/dd):");
+	        fechaE = sc.nextLine();
+	    }
+
+	    System.out.print("Fecha de Salida(yyyy/MM/dd): ");
+	    String fechaS = sc.nextLine();
+
+	    while ((fechaSd = MenuReservas.convertirFecha(fechaS)) == null) {
+	        System.out.print("Fecha de Salida(yyyy/MM/dd): ");
+	        fechaS = sc.nextLine();
+	    }
+
+	    if (fechaEd.after(fechaSd)) {
+	        System.out.println("Error. La fecha de entrada no puede ser posterior a la fecha de salida.");
+	        return null;
+	    }
+
+	    Reserva reserva = new Reserva();
 	    reserva.setFechaEntrada(fechaEd);
 	    reserva.setFechaSalida(fechaSd);
-		return reserva;
+
+	    return reserva;
 	}
+
 	public static Reserva agregarReserva(Scanner sc, int idOficina, Date fechaEd, Date fechaSd) {
 	    System.out.println("\n--- Añadir Reserva ---");
 	    System.out.println("Código de la vivienda:");
@@ -100,7 +112,7 @@ public class MenuReservas {
 	    sc.nextLine();
 	    if (!GestionReserva.esViviendaDeOficina(codVivienda, idOficina)) {
 	        System.out.println("Error: La vivienda seleccionada no pertenece a la oficina indicada.");
-	        return null; // Cancelar la reserva si la vivienda no es válida
+	        return null;
 	    }
 
 	    long ms = fechaSd.getTime() - fechaEd.getTime();

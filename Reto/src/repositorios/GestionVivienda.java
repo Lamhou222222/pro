@@ -105,6 +105,26 @@ public class GestionVivienda {
     	}
     			
     }
+    public static void eliminarUsuario(String email) {
+String deleteQuery= "DELETE FROM usuario WHERE email = ?";
+    	
+    	try {
+    		PreparedStatement statement = ConectorBD.conexion.prepareStatement(deleteQuery);
+    		
+    		statement.setString(1, email );
+    		 int rowsAffected = statement.executeUpdate(); 
+
+    	        if (rowsAffected > 0) {
+    	            System.out.println("¡Usuario eliminado con éxito!");
+    	        } else {
+    	            System.out.println("No se encontró el usuario para eliminar.");
+    	        }
+    	}catch(SQLException e) {
+    		e.printStackTrace();
+            System.out.println("Error al hacer la consulta: " + deleteQuery);
+    	}
+    			
+    }
                     
 }
 

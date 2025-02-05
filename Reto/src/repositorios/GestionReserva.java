@@ -9,7 +9,7 @@ import clases.Reserva;
 
 public class GestionReserva {
 	
-	public static void consultarFechaBD(int opcion,Date fechaEntrada, Date fechaSalida) {
+	public static boolean consultarFechaBD(int opcion,Date fechaEntrada, Date fechaSalida) {
 	    String Select = "SELECT v.CodVivienda, v.IdOficina, v.Ciudad, v.Direccion, v.Descripcion, v.NumHab, v.Precio_Dia, v.Tipo_Vivienda, v.Planta, v.Piscina "
 	            + "FROM vivienda v "
 	            + "LEFT JOIN reserva r ON v.CodVivienda = r.CodVivienda AND "
@@ -17,7 +17,8 @@ public class GestionReserva {
 	            + "  (r.FechaSalida BETWEEN ? AND ?) OR "
 	            + "  (r.FechaEntrada < ? AND r.FechaSalida > ?) ) "
 	            + "WHERE r.CodVivienda IS NULL AND v.CodVivienda=?";  // Sólo selecciona viviendas que no tienen reservas que se superpongan
-
+	   
+	    boolean hayViviendasDisponibles = false;
 	    try {
 	        PreparedStatement statement = ConectorBD.conexion.prepareStatement(Select);
 	        statement.setDate(1, fechaEntrada);
@@ -30,7 +31,6 @@ public class GestionReserva {
 
 	        ResultSet rs = statement.executeQuery();
 
-	        boolean hayViviendasDisponibles = false;
 
 	        while (rs.next()) {
 	            hayViviendasDisponibles = true;
@@ -49,8 +49,9 @@ public class GestionReserva {
 	        e.printStackTrace();
 	        System.out.println("Error al hacer la consulta: " + Select);
 	    }
+	    return hayViviendasDisponibles;
 	}
-
+		
 	public static void insertarReserva(Reserva reserva) {
         
         String insert = "INSERT INTO reserva (DniUsuario, CodVivienda, FechaEntrada, FechaSalida, NumHuespedes, TotalPagado) VALUES (?, ?, ?, ?, ?, ?)";
@@ -77,7 +78,7 @@ public class GestionReserva {
             }
     }
 	public static void mostrarReservas() {
-	    System.out.println("Lista de viviendas");
+	    System.out.println("Lista de reservas");
 	    String Select = "SELECT * FROM mr_robot.reserva WHERE dniUsuario= ?";
 
 	    try {
@@ -156,7 +157,7 @@ public class GestionReserva {
 	        ResultSet rs = statement.executeQuery();
 	        
 	        if (rs.next() && rs.getInt(1) > 0) {
-	            return true; // La vivienda pertenece a la oficina
+	            return true;
 	        }
 	        
 	    } catch (SQLException e) {
@@ -164,7 +165,7 @@ public class GestionReserva {
 	        System.out.println("Error al verificar la vivienda.");
 	    }
 	    
-	    return false; // La vivienda no pertenece a la oficina
+	    return false;
 	}
 
 

@@ -16,9 +16,8 @@ public class MenuOficina {
 	            System.out.println("\n--- Menú Oficina ---");
 	            System.out.println("1.- Buscar vivienda por Oficina");
 	            System.out.println("2.- Mostrar oficinas disponibles");
-	            System.out.println("3.  Mostrar reservas");
-	            System.out.println("4.- Volver atras.");
-	            System.out.println("5.- Salir");
+	            System.out.println("3.- Mostrar reservas");
+	            System.out.println("4.- Salir");
 	            System.out.println();
 	            System.out.print("Selecciona una opción: ");
 	            int opcion;
@@ -37,8 +36,6 @@ public class MenuOficina {
 	                	GestionReserva.mostrarReservas();
 	                	break;
 	                case 4: 
-	                   return;
-	                case 5: 
 	                    System.out.println("Finalizando programa ¡Hasta la próxima!");
 	                    break;
 	                    

@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import clases.Usuario;
 import view.MenuOficina;
@@ -45,7 +47,18 @@ public class GestionUsuario {
 			
 	}
 	public static void loginUsuario(String email, String Contraseña) {
-	    String consulta = "SELECT * FROM usuario WHERE email=? AND Contraseña=?";
+	    
+		   String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+		    Pattern pattern = Pattern.compile(regex);
+		    Matcher matcher = pattern.matcher(email);
+
+		    // Si el correo electrónico no es válido, terminamos la ejecución y mostramos el mensaje de error.
+		    if (!matcher.matches()) {
+		        System.out.println("El correo electrónico no es válido.");
+		        return;  // Salimos del método si el correo no es válido.
+		    }
+		
+		String consulta = "SELECT * FROM usuario WHERE email=? AND Contraseña=?";
 	    try {
 	        PreparedStatement statement = ConectorBD.conexion.prepareStatement(consulta);
 	        statement.setString(1, email);

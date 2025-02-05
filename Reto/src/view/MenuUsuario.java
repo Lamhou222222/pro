@@ -72,17 +72,22 @@ public class MenuUsuario {
 			String apellido=sc.nextLine();
 			System.out.println("Ingresa tu nombre de usuario:");
 			String nomUs=sc.nextLine();
+			Matcher matcher;
+			String email;
+			do {
 			System.out.println("Ingresa tu email:");
-			String email=sc.nextLine();
+			email=sc.nextLine();
 			String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 	        Pattern pattern = Pattern.compile(regex);
-	        Matcher matcher = pattern.matcher(email);
+	        matcher = pattern.matcher(email);
 
 	        if (matcher.matches()) {
 	            System.out.println("El correo es válido.");
 	        } else {
-	            System.out.println("El correo no es válido.");
+	            System.out.println("Error. Ingresa un email válido.");
+	            
 	        }
+	        }while(!matcher.matches());
 			System.out.println("Ingresa tu contraseña(mínimo 8 caracteres):");
 			String contraseña;
 			System.out.println();

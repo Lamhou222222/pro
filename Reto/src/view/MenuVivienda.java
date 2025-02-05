@@ -18,8 +18,9 @@ public class MenuVivienda {
 	            System.out.println("3.- Modificar Vivienda");
 	            System.out.println("4.- Eliminar Vivienda");
 	            System.out.println("5.- Mostrar Usuarios");
-	            System.out.println("6.- Volver atras");
-	            System.out.println("7.- Salir");
+	            System.out.println("6.- Eliminar Usuarios");
+	            System.out.println("7.- Volver atras");
+	            System.out.println("8.- Salir");
 	            System.out.println();
 	            System.out.print("Selecciona una opción: ");
 
@@ -49,8 +50,14 @@ public class MenuVivienda {
 	                	GestionUsuario.mostrarUsuarios();
 	                	break;
 	                case 6:
-	                	return;
+	                	GestionUsuario.mostrarUsuarios();
+	                	System.out.println("Introduce el email del usuario que quieres eliminar:");
+	                	String email=sc.nextLine();
+	                	GestionVivienda.eliminarUsuario(email);
+	                	break;
 	                case 7:
+	                	return;
+	                case 8:
 	                    salir = true;
 	                    System.out.println("Finalizando programa. ¡Nos vemos Administrador!");
 	                    break;
