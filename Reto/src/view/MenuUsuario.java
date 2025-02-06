@@ -9,7 +9,7 @@ import clases.Usuario;
 
 import repositorios.GestionUsuario;
 
-public class MenuUsuario {
+public class MenuUsuario{
 	public static Scanner sc=new Scanner(System.in);
 	
 	public static void mostrarMenuUsuario(Scanner sc) {
