@@ -78,12 +78,18 @@ public class MenuReservas {
 	public static Reserva consultarFechas(Scanner sc) {
 	    Date fechaEd = null;
 	    Date fechaSd = null;
+	    LocalDate fechaActual = LocalDate.now();
 
 	    while (fechaEd == null) {
 	        try {
 	            System.out.print("Fecha de Entrada (yyyy/MM/dd): ");
 	            String fechaE = sc.nextLine();
 	            fechaEd = convertirFecha(fechaE);  // Usa el método corregido
+	            LocalDate fechaEntradaLocal = fechaEd.toLocalDate();
+	            if (fechaEntradaLocal.isBefore(fechaActual)) {
+	    	        System.out.println("Error: La fecha de entrada no puede ser anterior a la fecha actual (" + fechaActual + ").");
+	    	        return null;
+	    	    }
 	        } catch (ParseException e) {
 	            System.out.println("Error: Formato de fecha incorrecto. Usa yyyy/MM/dd.");
 	        }
@@ -94,31 +100,31 @@ public class MenuReservas {
 	            System.out.print("Fecha de Salida (yyyy/MM/dd): ");
 	            String fechaS = sc.nextLine();
 	            fechaSd = convertirFecha(fechaS);
+	    	    LocalDate fechaSalidaLocal = fechaSd.toLocalDate();
+	    	    if (fechaSalidaLocal.isBefore(fechaActual)) {
+	    	        System.out.println("Error: La fecha de salida no puede ser anterior a la fecha actual (" + fechaActual + ").");
+	    	        return null;
+	    	    }
+	    	    
 	        } catch (ParseException e) {
-	            System.out.println("Error: Formato de fecha incorrecto. Usa yyyy/MM/dd.");
+	            System.out.println("Error: Formato de fecha incorrecto. Usa YYYY/MM/DD.");
 	        }
 	    }
 
 	    // Convertir Date a LocalDate correctamente
-	    LocalDate fechaActual = LocalDate.now();
-	    LocalDate fechaEntradaLocal = fechaEd.toLocalDate();
-	    LocalDate fechaSalidaLocal = fechaSd.toLocalDate();
+	   
+	   
+
 
 	    // Validaciones
-	    if (fechaEntradaLocal.isAfter(fechaSalidaLocal)) {
-	        System.out.println("Error: La fecha de entrada no puede ser posterior a la fecha de salida.");
-	        return null;
+	 
+	    if(fechaEd.after(fechaSd)) {
+	    	System.out.println("Error. La fecha de entrada no puede ser posterior a la fecha de salida.");
+	    	return null;
 	    }
+	  
 
-	    if (fechaEntradaLocal.isBefore(fechaActual)) {
-	        System.out.println("Error: La fecha de entrada no puede ser anterior a la fecha actual (" + fechaActual + ").");
-	        return null;
-	    }
-
-	    if (fechaSalidaLocal.isBefore(fechaActual)) {
-	        System.out.println("Error: La fecha de salida no puede ser anterior a la fecha actual (" + fechaActual + ").");
-	        return null;
-	    }
+	    
 
 	    // Crear y retornar la reserva
 	    Reserva reserva = new Reserva();
