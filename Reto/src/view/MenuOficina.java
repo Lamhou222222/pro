@@ -21,24 +21,21 @@ public class MenuOficina {
 	            System.out.println("4.- Salir");
 	            System.out.println();
 	            System.out.print("Selecciona una opción: ");
-	            int opcion = -1;  
+	            int opcion = 0;  
 
 	            try {
 	                opcion = sc.nextInt();
-	                sc.nextLine(); 
+	                sc.nextLine();
 	            } catch (InputMismatchException e) {
 	                System.out.println("Error. Debes ingresar un número válido.");
 	                sc.nextLine();
 	                continue;
 	            }
-	        do {
-	        	opcion = sc.nextInt();
-	            sc.nextLine();
 
 	            switch (opcion) {
 	                case 1:
 	                	mostrarViviendasOficina(sc);
-	                        break;
+	                    break;
 	                case 2:
 	                	GestionOficina.DatosOficina();
 	                    break;
@@ -46,14 +43,15 @@ public class MenuOficina {
 	                	GestionReserva.mostrarReservas();
 	                	break;
 	                case 4: 
+	                	
 	                    System.out.println("Finalizando programa ¡Hasta la próxima!");
+	                    System.exit(0);
 	                    break;
 	                    
 	                default:
 	                    System.out.println("Opción no válida. Intenta de nuevo.");
 	                    break;
 	            }
-	        }while(opcion<1||opcion>3);
 	        }
 	 }
 	
@@ -92,7 +90,7 @@ public class MenuOficina {
 	                case 4:
 	                	return;
 	                case 5:
-	                    salir = true;
+	                	System.exit(0);
 	                    System.out.println("Finalizando programa ¡Hasta la próxima!");
 	                    break;
 	                default:

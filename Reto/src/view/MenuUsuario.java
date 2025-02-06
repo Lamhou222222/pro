@@ -41,7 +41,7 @@ public class MenuUsuario {
             	System.out.println("¡Usuario registrado con exito!");
                 break;  
             case 2: 
-            	System.out.println("Ingresa tu mail:");
+            	System.out.println("Ingresa tu email:");
             	String email=sc.nextLine();
             	String contraseña="0";
             	while(contraseña.length()<8) {
@@ -56,7 +56,7 @@ public class MenuUsuario {
     
             case 3: 
                 System.out.println("Finalizando programa ¡Hasta la próxima!");
-                break;
+                System.exit(0);
                 
             default:
                 System.out.println("Opción no válida. Intentalo de nuevo.");

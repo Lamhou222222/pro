@@ -71,9 +71,8 @@ public class MenuVivienda {
 	                case 8:
 	                	return;
 	                case 9:
-	                    salir = true;
 	                    System.out.println("Finalizando programa. ¡Nos vemos Administrador!");
-	                    break;
+	                    System.exit(0);
 	                default:
 	                    System.out.println("Opción no válida. Intenta de nuevo.");
 	            }

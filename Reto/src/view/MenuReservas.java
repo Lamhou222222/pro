@@ -3,6 +3,8 @@ package view;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -57,56 +59,68 @@ public class MenuReservas {
 	             return;
 
 	            case 3:
-	                salir = true;
 	                System.out.println("Finalizando programa ¡Hasta la próxima!");
-	                break;
+	                System.exit(0);
 	            default:
 	                System.out.println("Opción no válida. Intenta de nuevo.");
 	        }
 
 	        }
 	    }
-	private static Date convertirFecha(String fechaString) {
+	private static Date convertirFecha(String fechaString) throws ParseException {
 	    SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy/MM/dd");
-	    java.sql.Date fechaSql = null;
-	    try {
-	        java.util.Date fechaUtil = formatoEntrada.parse(fechaString);
-	        
-	        fechaSql = new java.sql.Date(fechaUtil.getTime());
-	        
-	    } catch (ParseException e) {
-	        System.out.println("Error. El formato de la fecha no es válido. Por favor, ingresa la fecha en formato yyyy/MM/dd.");
-	    }
-	    return fechaSql;
-	}
+	    formatoEntrada.setLenient(false);  // Evita fechas inválidas como "2024/02/30"
 
+	    java.util.Date fechaUtil = formatoEntrada.parse(fechaString); // Lanza ParseException si es inválida
+	    return new java.sql.Date(fechaUtil.getTime()); // Retorna una fecha SQL si necesitas guardarla en BD
+	}
 
 	public static Reserva consultarFechas(Scanner sc) {
 	    Date fechaEd = null;
 	    Date fechaSd = null;
 
-	    System.out.println("Fecha de Entrada(yyyy/MM/dd):");
-	    String fechaE = sc.nextLine();
-
-
-	    while ((fechaEd = MenuReservas.convertirFecha(fechaE)) == null) {
-	        System.out.println("Fecha de Entrada(yyyy/MM/dd):");
-	        fechaE = sc.nextLine();
+	    while (fechaEd == null) {
+	        try {
+	            System.out.print("Fecha de Entrada (yyyy/MM/dd): ");
+	            String fechaE = sc.nextLine();
+	            fechaEd = convertirFecha(fechaE);  // Usa el método corregido
+	        } catch (ParseException e) {
+	            System.out.println("Error: Formato de fecha incorrecto. Usa yyyy/MM/dd.");
+	        }
 	    }
 
-	    System.out.print("Fecha de Salida(yyyy/MM/dd): ");
-	    String fechaS = sc.nextLine();
-
-	    while ((fechaSd = MenuReservas.convertirFecha(fechaS)) == null) {
-	        System.out.print("Fecha de Salida(yyyy/MM/dd): ");
-	        fechaS = sc.nextLine();
+	    while (fechaSd == null) {
+	        try {
+	            System.out.print("Fecha de Salida (yyyy/MM/dd): ");
+	            String fechaS = sc.nextLine();
+	            fechaSd = convertirFecha(fechaS);
+	        } catch (ParseException e) {
+	            System.out.println("Error: Formato de fecha incorrecto. Usa yyyy/MM/dd.");
+	        }
 	    }
 
-	    if (fechaEd.after(fechaSd)) {
-	        System.out.println("Error. La fecha de entrada no puede ser posterior a la fecha de salida.");
+	    // Convertir Date a LocalDate correctamente
+	    LocalDate fechaActual = LocalDate.now();
+	    LocalDate fechaEntradaLocal = fechaEd.toLocalDate();
+	    LocalDate fechaSalidaLocal = fechaSd.toLocalDate();
+
+	    // Validaciones
+	    if (fechaEntradaLocal.isAfter(fechaSalidaLocal)) {
+	        System.out.println("Error: La fecha de entrada no puede ser posterior a la fecha de salida.");
 	        return null;
 	    }
 
+	    if (fechaEntradaLocal.isBefore(fechaActual)) {
+	        System.out.println("Error: La fecha de entrada no puede ser anterior a la fecha actual (" + fechaActual + ").");
+	        return null;
+	    }
+
+	    if (fechaSalidaLocal.isBefore(fechaActual)) {
+	        System.out.println("Error: La fecha de salida no puede ser anterior a la fecha actual (" + fechaActual + ").");
+	        return null;
+	    }
+
+	    // Crear y retornar la reserva
 	    Reserva reserva = new Reserva();
 	    reserva.setFechaEntrada(fechaEd);
 	    reserva.setFechaSalida(fechaSd);
