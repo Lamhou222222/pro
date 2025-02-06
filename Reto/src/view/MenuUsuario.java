@@ -14,7 +14,7 @@ public class MenuUsuario{
 	
 	public static void mostrarMenuUsuario(Scanner sc) {
 		int opcion = 0;
-		while (opcion!=3){
+		while (opcion!=3) {
 			System.out.println();
 		System.out.println("--¡BIENVENIDO A MR. ROBOT!--"
 				+ "\n--Tu App de alquiler de viviendas vacacionales--");
