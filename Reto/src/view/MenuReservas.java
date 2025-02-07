@@ -90,7 +90,7 @@ public class MenuReservas {
 	    	        return null;
 	    	    }
 	        } catch (ParseException e) {
-	            System.out.println("Error: Formato de fecha incorrecto. Usa yyyy/MM/dd.");
+	            System.out.println("Error: Formato de fecha incorrecto. Usa YYYY/MM/DD.");
 	        }
 	    }
 
