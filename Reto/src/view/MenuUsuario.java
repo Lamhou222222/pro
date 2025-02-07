@@ -71,12 +71,14 @@ public class MenuUsuario{
 			boolean emailValido=false;
 			do {
 			System.out.println("Ingresa tu DNI:");
+			do {
 			dni=sc.nextLine();
 			if(dni.length()!=9) {
 				System.out.println("Error. Introduce un DNI válido:");
 			}else {
 			usuar.setDni(dni);
 			}
+			}while(dni.length()!=9);
 			if(GestionUsuario.comprobarDNI(usuar)) {
 				System.out.println("Error. El DNI ya existe en la base de datos.");
 				System.out.println("Intentalo de nuevo.");
