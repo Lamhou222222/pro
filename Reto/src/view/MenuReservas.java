@@ -68,10 +68,10 @@ public class MenuReservas {
 	    }
 	private static Date convertirFecha(String fechaString) throws ParseException {
 	    SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy/MM/dd");
-	    formatoEntrada.setLenient(false);  // Evita fechas inválidas como "2024/02/30"
+	    formatoEntrada.setLenient(false);
 
-	    java.util.Date fechaUtil = formatoEntrada.parse(fechaString); // Lanza ParseException si es inválida
-	    return new java.sql.Date(fechaUtil.getTime()); // Retorna una fecha SQL si necesitas guardarla en BD
+	    java.util.Date fechaUtil = formatoEntrada.parse(fechaString);
+	    return new java.sql.Date(fechaUtil.getTime());
 	}
 
 	public static Reserva consultarFechas(Scanner sc) {
@@ -83,7 +83,7 @@ public class MenuReservas {
 	        try {
 	            System.out.print("Fecha de Entrada (yyyy/MM/dd): ");
 	            String fechaE = sc.nextLine();
-	            fechaEd = convertirFecha(fechaE);  // Usa el método corregido
+	            fechaEd = convertirFecha(fechaE);
 	            LocalDate fechaEntradaLocal = fechaEd.toLocalDate();
 	            if (fechaEntradaLocal.isBefore(fechaActual)) {
 	    	        System.out.println("Error: La fecha de entrada no puede ser anterior a la fecha actual (" + fechaActual + ").");
@@ -110,22 +110,12 @@ public class MenuReservas {
 	        }
 	    }
 
-	    // Convertir Date a LocalDate correctamente
-	   
-	   
-
-
-	    // Validaciones
 	 
 	    if(fechaEd.after(fechaSd)) {
 	    	System.out.println("Error. La fecha de entrada no puede ser posterior a la fecha de salida.");
 	    	return null;
 	    }
 	  
-
-	    
-
-	    // Crear y retornar la reserva
 	    Reserva reserva = new Reserva();
 	    reserva.setFechaEntrada(fechaEd);
 	    reserva.setFechaSalida(fechaSd);

@@ -65,15 +65,28 @@ public class MenuUsuario{
 		}
     }
 	public static Usuario crearUsuario() {
-			
-			System.out.println("Ingresa tu DNI:");
+			Usuario usuar=new Usuario();
 			String dni;
+			boolean dniValido=false;
+			boolean emailValido=false;
 			do {
+			System.out.println("Ingresa tu DNI:");
 			dni=sc.nextLine();
 			if(dni.length()!=9) {
 				System.out.println("Error. Introduce un DNI válido:");
+			}else {
+			usuar.setDni(dni);
 			}
-			}while(dni.length()!=9);
+			if(GestionUsuario.comprobarDNI(usuar)) {
+				System.out.println("Error. El DNI ya existe en la base de datos.");
+				System.out.println("Intentalo de nuevo.");
+			}else {
+				dniValido=true;
+			}
+			
+			}while(!dniValido);
+			
+			
 			System.out.println("Ingresa tu nombre:");
 			String nombre=sc.nextLine();
 			System.out.println("Ingresa tu apellido:");
@@ -83,19 +96,28 @@ public class MenuUsuario{
 			Matcher matcher;
 			String email;
 			do {
+				 do {
 			System.out.println("Ingresa tu email:");
 			email=sc.nextLine();
 			String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 	        Pattern pattern = Pattern.compile(regex);
 	        matcher = pattern.matcher(email);
-
+	        usuar.setEmail(email);
+	       
 	        if (matcher.matches()) {
-	            System.out.println("El correo es válido.");
+	     
 	        } else {
-	            System.out.println("Error. Ingresa un email válido.");
-	            
+	            System.out.println("Error. Ingresa un email válido.");  
 	        }
 	        }while(!matcher.matches());
+	        if(GestionUsuario.comprobarCorreo(usuar)) {
+	        	System.out.println("ERROR. El email ya existe en la base de datos.");
+	        }else {
+	        	emailValido=true;
+	        }
+	        
+	        }while(!emailValido);
+			
 			System.out.println("Ingresa tu contraseña(mínimo 8 caracteres):");
 			String contraseña;
 			System.out.println();

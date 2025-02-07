@@ -15,19 +15,57 @@ public class GestionUsuario {
 	
 	private final static Scanner sc= new Scanner (System.in);
 	
-	private static String dniUsuario; // Aquí guardas el DNI del usuario logueado.
+	private static String dniUsuario;
 
     public static String getDniUsuario() {
-        return dniUsuario;  // Devuelves el DNI cuando se necesite.
+        return dniUsuario;
     }
     public static String nombre;
     public static String getNombre() {
     	return nombre;
     }
 	
+    public static boolean comprobarCorreo(Usuario us){
+
+	    String checkEmail = "SELECT COUNT(*) FROM Usuario WHERE Email = ?";
+	    try {
+	    	 PreparedStatement checkEmailStatement = ConectorBD.conexion.prepareStatement(checkEmail);
+		        checkEmailStatement.setString(1, us.getEmail());
+		        ResultSet resultEmail = checkEmailStatement.executeQuery();
+		        if (resultEmail.next() && resultEmail.getInt(1) > 0) {;
+		            return true;
+		        }
+	    }catch(SQLException e) {
+	    	System.out.println("ERROR. No se pudo verificar el email.");
+	    }
+	    return false;
+    }
+    public static boolean comprobarDNI(Usuario u) {
+    
+	    String checkDni = "SELECT COUNT(*) FROM Usuario WHERE DNI = ?";
+	    
+	    	 try {
+	 	     
+	 	        PreparedStatement checkDniStatement = ConectorBD.conexion.prepareStatement(checkDni);
+	 	        checkDniStatement.setString(1, u.getDni());
+	 	        ResultSet resultDni = checkDniStatement.executeQuery();
+	 	        
+	 	        if (resultDni.next() && resultDni.getInt(1) > 0) {
+	 	            return true;
+	 	        }
+	    }catch(SQLException e) {
+	    	System.out.println("ERROR. No se pudo verificar el DNI.");
+	    
+	    }
+	    	 return false;
+    }
+    
+    
 	public static void insertarUsuario(Usuario usuario) {
+		
+	    try {  
+	       
 		String insert="INSERT INTO Usuario (DNI, Nombre, Apellido, NomUs, Email, Contraseña, Rol) VALUES (?, ?, ?, ?, ?, ?, ?)";
-		try {
 			PreparedStatement statement=ConectorBD.conexion.prepareStatement(insert);
 			statement.setString(1, usuario.getDni());
 			statement.setString(2, usuario.getNombre());
@@ -42,9 +80,9 @@ public class GestionUsuario {
 		} catch (SQLException e) {
 				
 			e.printStackTrace();
-			System.out.println("Error al hacer la consulta: "+insert);
-		}
+			System.out.println("Error al hacer la consulta.");	
 			
+		}
 	}
 	public static void loginUsuario(String email, String Contraseña) {
 	    
@@ -52,10 +90,9 @@ public class GestionUsuario {
 		    Pattern pattern = Pattern.compile(regex);
 		    Matcher matcher = pattern.matcher(email);
 
-		    // Si el correo electrónico no es válido, terminamos la ejecución y mostramos el mensaje de error.
 		    if (!matcher.matches()) {
 		        System.out.println("El correo electrónico no es válido.");
-		        return;  // Salimos del método si el correo no es válido.
+		        return;
 		    }
 		
 		String consulta = "SELECT * FROM usuario WHERE email=? AND Contraseña=?";
