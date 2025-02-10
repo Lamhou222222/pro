@@ -41,7 +41,7 @@ public class GestionOficina {
     }
 
     public static void DatosOficina() {
-        System.out.println("Lista de viviendas");
+        System.out.println("Nuestras oficinas");
         System.out.println();
 
         String Select = "SELECT * FROM mr_robot.oficina";
