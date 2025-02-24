@@ -1,6 +1,9 @@
 package view;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import clases.Piso;
+import clases.Villa;
 import clases.Vivienda;
 import repositorios.GestionReserva;
 import repositorios.GestionUsuario;
@@ -40,14 +43,19 @@ public class MenuVivienda {
 	            switch (opcion) {
 	                case 1:
 		                 Vivienda viv=agregarVivienda(sc);
-		                 GestionVivienda.insertarVivienda(viv);
+		                 Piso piso=new Piso();
+		                 Villa villa=new Villa();
+		                 GestionVivienda.insertarVivienda(viv, piso, villa);
 	                     break;
 	                case 2:
 	                	GestionVivienda.mostrarViviendasBD();
 	                    break;
 	                case 3:
-	                	 Vivienda viviendaModificada = modificarVivienda(sc);
-	                	 GestionVivienda.modificarViviendaBD(viviendaModificada);
+	                	System.out.println("Introduce el codigo de la vivienda a modificar:");
+	                	int codigo=sc.nextInt();
+	                	Vivienda vivienda=GestionVivienda.obtenerViviendaPorCodigo(codigo);
+	                	modificarVivienda(codigo, sc);
+	                	GestionVivienda.modificarViviendaBD(vivienda);
 	                   break;
 	                case 4:
 	                  	GestionVivienda.mostrarViviendasBD();
@@ -82,49 +90,47 @@ public class MenuVivienda {
 	 public static Vivienda agregarVivienda(Scanner sc) {
 		    System.out.println("\n--- Añadir Vivienda ---");
 
-
 		    int idOficina = 0;
 		    boolean valido = false;
 		    while (!valido) {
 		        try {
-		        	do {
-		            System.out.println("Id Oficina:");
-		            idOficina = sc.nextInt();
-		            if(idOficina>3||idOficina<1) {
-		            	System.out.println("Error. No existe la oficina introducida.");
-		            }
-		        	}while(idOficina>3||idOficina<1);
-		           
+		            do {
+		                System.out.println("Id Oficina:");
+		                idOficina = sc.nextInt();
+		                if (idOficina > 3 || idOficina < 1) {
+		                    System.out.println("Error. No existe la oficina introducida.");
+		                }
+		            } while (idOficina > 3 || idOficina < 1);
 		            valido = true;
 		        } catch (Exception e) {
 		            System.out.println("Error. Debes ingresar un número entero para el Id de la oficina.");
 		            sc.nextLine();
 		        }
 		    }
-		    sc.nextLine(); 
+		    sc.nextLine();
 
 		    System.out.print("Ciudad: ");
 		    String ciudad = sc.nextLine();
 		    System.out.print("Dirección: ");
 		    String direccion = sc.nextLine();
 
-		  
 		    int numHab = 0;
 		    valido = false;
 		    while (!valido) {
 		        try {
 		            System.out.print("Número de habitaciones: ");
 		            numHab = sc.nextInt();
-		            valido = true; 
+		            valido = true;
 		        } catch (Exception e) {
 		            System.out.println("Error. Debes ingresar un número entero para el número de habitaciones.");
-		            sc.nextLine(); 
+		            sc.nextLine();
 		        }
 		    }
 
+		    sc.nextLine(); 
+
 		    System.out.print("Descripción: ");
 		    String descripcion = sc.nextLine();
-		    sc.nextLine(); 
 
 		    double precioDia = 0.0;
 		    valido = false;
@@ -132,72 +138,75 @@ public class MenuVivienda {
 		        try {
 		            System.out.print("Precio por día: ");
 		            precioDia = sc.nextDouble();
-		            valido = true; 
+		            valido = true;
 		        } catch (Exception e) {
 		            System.out.println("Error. Debes ingresar un número decimal para el precio por día.");
-		            sc.nextLine(); 
+		            sc.nextLine();
 		        }
 		    }
 		    sc.nextLine(); 
 
-		    String tipo_Vivienda;
-		    String planta = null;
-		    String piscina = "No";
-		    do {
-		        System.out.println("TipoVivienda (Villa/Piso):");
-		        tipo_Vivienda = sc.nextLine();
+		    while (true) {
+		        System.out.println("Tipo de Vivienda (Villa/Piso):");
+		        String tipoVivienda = sc.nextLine();
 
-		        if (tipo_Vivienda.equalsIgnoreCase("Villa")) {
-		            do {
+		        if (tipoVivienda.equalsIgnoreCase("Villa")) {
+		            while (true) {
 		                System.out.println("¿Tiene piscina? (Si/No):");
-		                piscina = sc.nextLine();
-		            } while (!piscina.equalsIgnoreCase("Si") && !piscina.equalsIgnoreCase("No"));
-		        } else if (tipo_Vivienda.equalsIgnoreCase("Piso")) {
-		        	do {
-		            System.out.println("¿Qué planta es? (Número y letra):");
-		            planta = sc.nextLine();
-		            if(planta.length()>3) {
-		            	System.out.println("Error. Inserta máximo 2 letras y un número.");
-		
+		                String piscina = sc.nextLine();
+		                if (piscina.equalsIgnoreCase("Si") || piscina.equalsIgnoreCase("No")) {
+		                    return new Villa(idOficina, ciudad, direccion, numHab, descripcion, precioDia, tipoVivienda, piscina);
+		                }
+		                System.out.println("Error. Introduce 'Si' o 'No'.");
 		            }
-		        	}while(planta.length()>3);
+		        } else if (tipoVivienda.equalsIgnoreCase("Piso")) {
+		            while (true) {
+		                System.out.println("¿Qué planta es? (Número y letra, máx. 3 caracteres):");
+		                String planta = sc.nextLine();
+		                if (planta.length() <= 3) {
+		                    return new Piso(idOficina, ciudad, direccion, numHab, descripcion, precioDia, tipoVivienda, planta);
+		                }
+		                System.out.println("Error. Inserta máximo 2 letras y un número.");
+		            }
 		        } else {
-		            System.out.println("Error. Introduce Villa o Piso:");
+		            System.out.println("Error. Introduce 'Villa' o 'Piso'.");
 		        }
-		    } while (!tipo_Vivienda.equalsIgnoreCase("Villa") && !tipo_Vivienda.equalsIgnoreCase("Piso"));
-
-		    Vivienda vivienda = new Vivienda(idOficina, ciudad, direccion, numHab, descripcion, precioDia, tipo_Vivienda, planta, piscina);
-		    return vivienda;
+		    }
 		}
 
-	        private static Vivienda modificarVivienda(Scanner sc) {
-	           
-	            System.out.println("Introduce el Codigo de la vivienda a actualizar:");
-	            int codV = sc.nextInt();
-	            sc.nextLine();
 
-	            Vivienda vivi = new Vivienda();
-	            vivi.setCodViv(codV);
+	 private static void modificarVivienda(int codigo, Scanner sc) {
+		    // Buscar la vivienda en la BD según el código
+		    Vivienda vivi = GestionVivienda.obtenerViviendaPorCodigo(codigo);
 
-	            System.out.println("Cambia la descripción de la vivienda:");
-	            String desc = sc.nextLine();
-	            vivi.setDescripcion(desc);
-	            
-	            while(true) {
-	            	try {
-	            		System.out.println("Introduce el nuevo precio por dia:");
-	    	            double precioD = sc.nextDouble();
-	    	            sc.nextLine();
-	    	            vivi.setPrecioDia(precioD);
-	    	            break;
-	            	}catch(InputMismatchException e) {
-	            		System.out.println("Error. Introduce un número válido.");
-	            		sc.nextLine();
-	            	}
-	            	
-	            }  
-				return vivi;
-	        }
+		    if (vivi == null) {
+		        System.out.println("No se encontró ninguna vivienda con el código " + codigo);
+		        return;
+		    }
+
+		    System.out.println("Modificando vivienda con código: " + codigo);
+
+		    System.out.println("Cambia la descripción de la vivienda:");
+		    String desc = sc.nextLine();
+		    vivi.setDescripcion(desc);
+
+		    while (true) {
+		        try {
+		            System.out.println("Introduce el nuevo precio por día:");
+		            double precioD = sc.nextDouble();
+		            sc.nextLine();
+		            vivi.setPrecioDia(precioD);
+		            break;
+		        } catch (InputMismatchException e) {
+		            System.out.println("Error. Introduce un número válido.");
+		            sc.nextLine();
+		        }
+		    }
+
+		    // Guardar los cambios en la BD
+		    GestionVivienda.modificarViviendaBD(vivi);
+		}
+
 	       
 	 }
 

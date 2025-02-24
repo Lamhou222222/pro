@@ -11,18 +11,18 @@ public class Villa extends Vivienda {
 	}
 
 	//Constructor con atributos
-	public Villa(int codVivienda, String ciudad, String direccion, int numHab, String descripcion, double precioDia,
+	public Villa(int codVivienda, String ciudad, String direccion, int numHab, String descripcion, double precioDia, String tipo_Vivienda,
 			String piscina) {
 		super();
 		this.piscina = piscina;
 	}
 	
 	//Getters y Setters
-	public String getSemanas() {
+	public String getPiscina() {
 		return piscina;
 	}
 
-	public void setSemanas(String piscina) {
+	public void setPiscina(String piscina) {
 		this.piscina = piscina;
 	}
 
